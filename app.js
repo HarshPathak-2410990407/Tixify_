@@ -1501,3 +1501,120 @@ const firebaseConfig = {
       updateGroupDiscountSummary();
   }
   
+function updateGroupDiscountSummary() {
+      const quantity = parseInt(ticketQuantity.value);
+      const eventId = groupEventSelect.value;
+      
+      quantityValue.textContent = quantity;
+      
+      if (!eventId) {
+          basePrice.textContent = '0.00 ETH';
+          discountRate.textContent = '0%';
+          savingsValue.textContent = '0.00 ETH';
+          totalGroupPrice.textContent = '0.00 ETH';
+          return;
+      }
+      
+      const event = events.find(e => e.id == eventId);
+      if (!event) return;
+      
+      const singlePrice = parseFloat(event.price);
+      basePrice.textContent = `${singlePrice.toFixed(2)} ETH`;
+      
+      // Calculate discount rate based on quantity
+      let discount = 0;
+      if (quantity >= 10) {
+          discount = 0.25; // 25% discount for 10+ tickets
+      } else if (quantity >= 5) {
+          discount = 0.15; // 15% discount for 5-9 tickets
+      } else if (quantity >= 3) {
+          discount = 0.10; // 10% discount for 3-4 tickets
+      }
+      
+      discountRate.textContent = `${(discount * 100).toFixed(0)}%`;
+      
+      const totalWithoutDiscount = singlePrice * quantity;
+      const savings = totalWithoutDiscount * discount;
+      const totalPrice = totalWithoutDiscount - savings;
+      
+      savingsValue.textContent = `${savings.toFixed(2)} ETH`;
+      totalGroupPrice.textContent = `${totalPrice.toFixed(2)} ETH`;
+  }
+  
+  function handleGroupPurchase() {
+      const quantity = parseInt(ticketQuantity.value);
+      const eventId = groupEventSelect.value;
+      
+      if (!eventId) {
+          showNotification('Please select an event.', 'error');
+          return;
+      }
+      
+      if (!userAddress) {
+          showNotification('Please connect your wallet first.', 'error');
+          connectWalletBtn.scrollIntoView({ behavior: 'smooth' });
+          hideModal(groupDiscountModal);
+          return;
+      }
+      
+      const event = events.find(e => e.id == eventId);
+      if (!event) {
+          showNotification('Event not found.', 'error');
+          return;
+      }
+      
+      // Calculate discount
+      let discount = 0;
+      if (quantity >= 10) {
+          discount = 0.25;
+      } else if (quantity >= 5) {
+          discount = 0.15;
+      } else if (quantity >= 3) {
+          discount = 0.10;
+      }
+      
+      const singlePrice = parseFloat(event.price);
+      const totalWithoutDiscount = singlePrice * quantity;
+      const savings = totalWithoutDiscount * discount;
+      const totalPrice = totalWithoutDiscount - savings;
+      
+      // Add to cart as a group purchase
+      const cartItem = {
+          id: Date.now(),
+          eventId: eventId,
+          title: `${event.title} (Group of ${quantity})`,
+          date: event.date,
+          time: event.time,
+          price: (totalPrice / quantity).toFixed(2), // Price per ticket with discount
+          originalPrice: event.price,
+          image: event.image,
+          location: event.location,
+          quantity: quantity,
+          isGroupPurchase: true,
+          groupDiscount: discount,
+          totalPrice: totalPrice.toFixed(2)
+      };
+      
+      cart.push(cartItem);
+      
+      // Update cart UI
+      updateCartUI();
+      
+      // Save cart to localStorage
+      saveCart();
+      
+      // Show notification
+      showNotification(`Group of ${quantity} tickets for ${event.title} added to cart with ${(discount * 100).toFixed(0)}% discount!`, 'success');
+      
+      // Hide modal
+      hideModal(groupDiscountModal);
+      
+      // Log analytics event
+      logEvent('add_group_to_cart', {
+          event_id: eventId,
+          event_name: event.title,
+          quantity: quantity,
+          discount_rate: discount,
+          total_price: totalPrice.toFixed(2)
+      });
+  }
