@@ -1299,3 +1299,117 @@ const firebaseConfig = {
               showNotification('Transfer failed. Please try again.', 'error');
           });
   }
+ // Handle sell ticket
+  function handleSellTicket(e) {
+      e.preventDefault();
+      
+      const ticketId = sellTicketSelect.value;
+      const price = document.getElementById('ticketPrice').value;
+      const description = document.getElementById('ticketDescription').value;
+      
+      if (!ticketId || !price) {
+          showNotification('Please select a ticket and enter a price.', 'error');
+          return;
+      }
+      
+      // Get ticket details
+      const ticket = userTickets.find(t => t.id === ticketId);
+      if (!ticket) {
+          showNotification('Ticket not found.', 'error');
+          return;
+      }
+      
+      // Create listing
+      const listing = {
+          id: 'LST-' + Date.now(),
+          ticketId: ticketId,
+          eventName: ticket.eventName,
+          date: ticket.date,
+          time: ticket.time,
+          location: ticket.location,
+          originalPrice: ticket.price,
+          listingPrice: price,
+          description: description,
+          createdAt: new Date().toISOString(),
+          status: 'active'
+      };
+      
+      // Add to listings
+      userListings.push(listing);
+      
+      // Add listing to UI
+      addListingToUI(listing);
+      
+      // Show success message
+      showNotification('Ticket listed for sale successfully!', 'success');
+      
+      // Hide modal
+      hideModal(sellTicketModal);
+      
+      // Log analytics event
+      logEvent('ticket_listed', {
+          ticket_id: ticketId,
+          event_name: ticket.eventName,
+          price: price
+      });
+  }
+  
+  // Add listing to UI
+  function addListingToUI(listing) {
+      const listingsContainer = document.getElementById('listingsContainer');
+      const noListingsMessage = document.getElementById('noListingsMessage');
+      
+      // Hide "No listings" message
+      if (noListingsMessage) {
+          noListingsMessage.style.display = 'none';
+      }
+      
+      // Create listing element
+      const listingElement = document.createElement('div');
+      listingElement.className = 'listing-item';
+      listingElement.setAttribute('data-listing-id', listing.id);
+      
+      listingElement.innerHTML = `
+          <div class="listing-header">
+              <h4>${listing.eventName}</h4>
+              <span class="listing-status">Active</span>
+          </div>
+          <div class="listing-content">
+              <div class="listing-details">
+                  <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      <strong>Date:</strong> ${listing.date} at ${listing.time}
+                  </p>
+                  <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <strong>Location:</strong> ${listing.location}
+                  </p>
+                  <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="12" y1="1" x2="12" y2="23"></line>
+                          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                      </svg>
+                      <strong>Price:</strong> ${listing.listingPrice} ETH
+                  </p>
+                  <p>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <strong>Listed:</strong> ${new Date(listing.createdAt).toLocaleDateString()}
+                  </p>
+              </div>
+              <div class="listing-actions">
+                  <button class="edit-btn" data-listing-id="${listing.id}">Edit Listing</button>
+                  <button class="remove-btn" data-listing-id="${listing.id}">Remove</button>
+              </div>
+          </div>
+      `;
