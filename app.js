@@ -939,3 +939,84 @@ renderEvents(filteredEvents);
       checkoutFee.textContent = `${fee.toFixed(2)} ETH`;
       checkoutTotal.textContent = `${total.toFixed(2)} ETH`;
   }
+ // Handle checkout
+  function handleCheckout() {
+      if (!userAddress) {
+          alert('Please connect your wallet first.');
+          hideModal(checkoutModal);
+          return;
+      }
+      
+      try {
+          // Show loading state
+          confirmPurchaseBtn.innerHTML = 'Processing...';
+          confirmPurchaseBtn.disabled = true;
+          
+          // Calculate total with ticket type multiplier
+          let total = 0;
+          cart.forEach(item => {
+              if (item.isGroupPurchase) {
+                  total += parseFloat(item.totalPrice);
+              } else {
+                  total += parseFloat(item.price) * ticketTypeMultiplier;
+              }
+          });
+          
+          // Add service fee
+          total += total * 0.05;
+          
+          // Simulate blockchain transaction
+          simulateBlockchainTransaction(total.toString())
+              .then(() => {
+                  // Process each item in cart
+                  for (const item of cart) {
+                      // Generate ticket ID
+                      const ticketId = `TIX-${item.eventId}-${Math.floor(Math.random() * 10000)}`;
+                      
+                      // Handle group purchases
+                      if (item.isGroupPurchase && item.quantity > 1) {
+                          for (let i = 0; i < item.quantity; i++) {
+                              const groupTicketId = `${ticketId}-${i+1}`;
+                              
+                              // Add ticket to user's tickets
+                              const newTicket = {
+                                  id: groupTicketId,
+                                  eventId: item.eventId,
+                                  eventName: item.title.replace(` (Group of ${item.quantity})`, ''),
+                                  date: item.date,
+                                  time: item.time,
+                                  location: item.location,
+                                  price: item.price,
+                                  purchaseDate: new Date().toISOString(),
+                                  status: 'active',
+                                  ticketType: 'standard', // Group purchases are standard tickets
+                                  isGroupTicket: true,
+                                  groupSize: item.quantity
+                              };
+                              
+                              userTickets.push(newTicket);
+                              
+                              // Add ticket to "My Tickets" section
+                              addTicketToMyTickets(newTicket);
+                          }
+                      } else {
+                          // Add ticket to user's tickets
+                          const newTicket = {
+                              id: ticketId,
+                              eventId: item.eventId,
+                              eventName: item.title,
+                              date: item.date,
+                              time: item.time,
+                              location: item.location,
+                              price: (parseFloat(item.price) * ticketTypeMultiplier).toFixed(2),
+                              purchaseDate: new Date().toISOString(),
+                              status: 'active',
+                              ticketType: selectedTicketType
+                          };
+                          
+                          userTickets.push(newTicket);
+                          
+                          // Add ticket to "My Tickets" section
+                          addTicketToMyTickets(newTicket);
+                      }
+                  }
