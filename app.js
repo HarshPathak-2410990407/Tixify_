@@ -100,7 +100,8 @@ const firebaseConfig = {
   const hoursElement = document.getElementById('hours');
   const minutesElement = document.getElementById('minutes');
   const secondsElement = document.getElementById('seconds');
-// Web3 Variables
+  
+  // Web3 Variables
   let web3;
   let userAddress = '';
   let connectedChainId;
@@ -199,7 +200,8 @@ const firebaseConfig = {
           remaining: 200
       }
   ];
-// Initialize the application
+  
+  // Initialize the application
   document.addEventListener('DOMContentLoaded', () => {
       initApp();
       logPageView();
@@ -298,7 +300,8 @@ const firebaseConfig = {
           populateTicketSelect();
           showModal(transferModal);
       });
- transferForm?.addEventListener('submit', handleTicketTransfer);
+      
+      transferForm?.addEventListener('submit', handleTicketTransfer);
       
       // Sell ticket
       sellTicketBtn?.addEventListener('click', () => {
@@ -395,7 +398,8 @@ const firebaseConfig = {
               updateGroupDiscountSummary();
           }
       });
-ticketQuantity?.addEventListener('change', updateGroupDiscountSummary);
+  
+      ticketQuantity?.addEventListener('change', updateGroupDiscountSummary);
       groupEventSelect?.addEventListener('change', updateGroupDiscountSummary);
       addGroupToCartBtn?.addEventListener('click', handleGroupPurchase);
       enterLotteryBtn?.addEventListener('click', enterLottery);
@@ -480,4 +484,121 @@ ticketQuantity?.addEventListener('change', updateGroupDiscountSummary);
                   disconnectWallet();
               });
       }
+  }
+  
+  // Connect wallet
+  async function connectWallet() {
+      if (window.ethereum) {
+          try {
+              // Request account access
+              const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+              userAddress = accounts[0];
+              
+              // Save to localStorage
+              localStorage.setItem('walletAddress', userAddress);
+              
+              // Update UI
+              updateWalletUI(userAddress);
+              
+              // Initialize Web3
+              web3 = new Web3(window.ethereum);
+              
+              // Get network ID
+              connectedChainId = await web3.eth.getChainId();
+              
+              // Set up event listeners for wallet
+              setupWalletEventListeners();
+              
+              // Log analytics event
+              logEvent('wallet_connected', {
+                  chain_id: connectedChainId
+              });
+          } catch (error) {
+              console.error('User denied wallet connection:', error);
+              walletStatus.innerText = 'Connection failed. Please try again.';
+              walletStatus.style.color = 'var(--error)';
+          }
+      } else {
+          walletStatus.innerText = 'Please install MetaMask to use this feature.';
+          walletStatus.style.color = 'var(--warning)';
+          
+          // Show MetaMask installation modal or redirect
+          const installMetaMask = confirm('MetaMask is required to use this feature. Would you like to install it now?');
+          if (installMetaMask) {
+              window.open('https://metamask.io/download.html', '_blank');
+          }
+      }
+  }
+  
+  // Set up wallet event listeners
+  function setupWalletEventListeners() {
+      if (window.ethereum) {
+          // Listen for account changes
+          window.ethereum.on('accountsChanged', (accounts) => {
+              if (accounts.length === 0) {
+                  // User disconnected wallet
+                  disconnectWallet();
+              } else {
+                  // User switched account
+                  userAddress = accounts[0];
+                  localStorage.setItem('walletAddress', userAddress);
+                  updateWalletUI(userAddress);
+                  
+                  // Log analytics event
+                  logEvent('wallet_account_changed');
+              }
+          });
+          
+          // Listen for chain changes
+          window.ethereum.on('chainChanged', (chainId) => {
+              connectedChainId = chainId;
+              
+              // Log analytics event
+              logEvent('wallet_chain_changed', {
+                  chain_id: chainId
+              });
+              
+              // Reload the page to avoid any issues
+              window.location.reload();
+          });
+      }
+  }
+  
+  // Disconnect wallet
+  function disconnectWallet() {
+      userAddress = '';
+      localStorage.removeItem('walletAddress');
+      
+      // Update UI
+      connectWalletBtn.innerText = 'Connect Wallet';
+      connectWalletBtn.disabled = false;
+      walletStatus.innerText = '';
+      
+      // Disable buy buttons
+      document.querySelectorAll('.event-card button').forEach(button => {
+          button.disabled = true;
+      });
+      
+      // Log analytics event
+      logEvent('wallet_disconnected');
+  }
+  
+  // Update wallet UI
+  function updateWalletUI(address) {
+      const shortAddress = `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+      walletStatus.innerText = `Connected: ${shortAddress}`;
+      walletStatus.style.color = 'var(--success)';
+      connectWalletBtn.innerHTML = `
+          <svg class="wallet-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+              <line x1="16" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Wallet Connected
+      `;
+      connectWalletBtn.classList.add('connected');
+      
+      // Enable buy buttons
+      document.querySelectorAll('.event-card button').forEach(button => {
+          button.disabled = false;
+      });
   }
