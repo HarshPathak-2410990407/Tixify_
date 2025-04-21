@@ -697,3 +697,137 @@ const firebaseConfig = {
           return matchesSearch && matchesCategory && matchesDate;
       });
       
+renderEvents(filteredEvents);
+      
+      // Log analytics event
+      logEvent('filter_events', {
+          search_term: searchTerm,
+          category: category,
+          date_filter: dateFilterValue,
+          results_count: filteredEvents.length
+      });
+  }
+  
+  // Load more events
+  function loadMoreEvents() {
+      // In a real app, this would fetch more events from the server
+      // For this demo, we'll just show a message
+      alert('In a production environment, this would load more events from the blockchain.');
+      
+      // Log analytics event
+      logEvent('load_more_events_clicked');
+  }
+  
+  // Add to cart
+  function addToCart(eventId) {
+      if (!userAddress) {
+          alert('Please connect your wallet first.');
+          connectWalletBtn.scrollIntoView({ behavior: 'smooth' });
+          return;
+      }
+      
+      const eventData = events.find(e => e.id == eventId);
+      
+      if (!eventData) {
+          alert('Event not found.');
+          return;
+      }
+      
+      // Check if already in cart
+      const existingItem = cart.find(item => item.eventId == eventId);
+      if (existingItem) {
+          showNotification('This event is already in your cart.', 'info');
+          return;
+      }
+      
+      // Add to cart
+      const cartItem = {
+          id: Date.now(), // Unique ID for the cart item
+          eventId: eventId,
+          title: eventData.title,
+          date: eventData.date,
+          time: eventData.time,
+          price: eventData.price,
+          image: eventData.image,
+          location: eventData.location
+      };
+      
+      cart.push(cartItem);
+      
+      // Update cart UI
+      updateCartUI();
+      
+      // Save cart to localStorage
+      saveCart();
+      
+      // Show notification
+      showNotification(`${eventData.title} added to cart!`, 'success');
+      
+      // Log analytics event
+      logEvent('add_to_cart', {
+          event_id: eventId,
+          event_name: eventData.title,
+          price: eventData.price
+      });
+  }
+  
+  // Update cart UI
+  function updateCartUI() {
+      // Update cart count
+      const cartCount = document.getElementById('cartCount');
+      cartCount.textContent = cart.length;
+      
+      // Update cart items
+      cartItems.innerHTML = '';
+      
+      if (cart.length === 0) {
+          emptyCartMessage.style.display = 'block';
+          checkoutBtn.disabled = true;
+          cartTotal.textContent = '0.00 ETH';
+          return;
+      }
+      
+      emptyCartMessage.style.display = 'none';
+      checkoutBtn.disabled = false;
+      
+      let total = 0;
+      
+      cart.forEach(item => {
+          const cartItemElement = document.createElement('div');
+          cartItemElement.className = 'cart-item';
+          
+          if (item.isGroupPurchase) {
+              cartItemElement.innerHTML = `
+                  <div class="cart-item-image">
+                      <img src="${item.image}" alt="${item.title}">
+                  </div>
+                  <div class="cart-item-details">
+                      <div class="cart-item-title">${item.title}</div>
+                      <div class="cart-item-info">${item.date} at ${item.time}</div>
+                      <div class="cart-item-info">${item.location}</div>
+                      <div class="cart-item-info">Discount: ${(item.groupDiscount * 100).toFixed(0)}%</div>
+                      <div class="cart-item-price">${item.totalPrice} ETH (${item.price} ETH each)</div>
+                  </div>
+                  <button class="cart-item-remove" data-id="${item.id}">&times;</button>
+              `;
+              
+              total += parseFloat(item.totalPrice);
+          } else {
+              cartItemElement.innerHTML = `
+                  <div class="cart-item-image">
+                      <img src="${item.image}" alt="${item.title}">
+                  </div>
+                  <div class="cart-item-details">
+                      <div class="cart-item-title">${item.title}</div>
+                      <div class="cart-item-info">${item.date} at ${item.time}</div>
+                      <div class="cart-item-info">${item.location}</div>
+                      <div class="cart-item-price">${item.price} ETH</div>
+                  </div>
+                  <button class="cart-item-remove" data-id="${item.id}">&times;</button>
+              `;
+              
+              total += parseFloat(item.price);
+          }
+          
+          cartItems.appendChild(cartItemElement);
+      });
