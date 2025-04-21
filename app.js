@@ -1618,3 +1618,320 @@ function updateGroupDiscountSummary() {
           total_price: totalPrice.toFixed(2)
       });
   }
+  // Add these functions for the Lottery feature
+  function startLotteryTimer() {
+      function updateTimer() {
+          const now = new Date();
+          const distance = lotteryEndDate - now;
+          
+          // Calculate days, hours, minutes, and seconds
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+          // Update the timer display
+          if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+          if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+          if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+          if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+          
+          // If the countdown is over, reset it
+          if (distance < 0) {
+              lotteryEndDate = new Date();
+              lotteryEndDate.setDate(lotteryEndDate.getDate() + 14);
+          }
+      }
+      
+      // Update timer immediately and then every second
+      updateTimer();
+      setInterval(updateTimer, 1000);
+  }
+  
+  function updateLotteryEntries() {
+      // Calculate entries based on user's tickets
+      lotteryEntries = userTickets.length;
+      
+      // Update the UI
+      if (userEntries) {
+          userEntries.textContent = lotteryEntries;
+      }
+  }
+  
+  function enterLottery() {
+      if (!userAddress) {
+          showNotification('Please connect your wallet first.', 'error');
+          connectWalletBtn.scrollIntoView({ behavior: 'smooth' });
+          return;
+      }
+      
+      if (lotteryEntries === 0) {
+          showNotification('You need to purchase tickets to enter the lottery.', 'warning');
+          document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+          return;
+      }
+      
+      // Simulate lottery entry
+      showNotification(`You've successfully entered the lottery with ${lotteryEntries} entries!`, 'success');
+      
+      // Log analytics event
+      logEvent('enter_lottery', {
+          entries: lotteryEntries
+      });
+  }
+  
+  // Utility functions
+  function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
+  function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+          notification.remove();
+      }, 3000);
+  }
+  
+  function isValidEthereumAddress(address) {
+      return /^(0x)?[0-9a-fA-F]{40}$/.test(address);
+  }
+  
+  // Simulate ticket transfer
+  function simulateTicketTransfer(ticketId, recipientAddress, message) {
+      return new Promise((resolve, reject) => {
+          // Simulate network delay
+          setTimeout(() => {
+              // Simulate success or failure
+              const success = Math.random() > 0.1; // 90% success rate
+              
+              if (success) {
+                  resolve({
+                      transactionHash: '0x' + Math.random().toString(16).substr(2, 64),
+                      blockNumber: Math.floor(Math.random() * 1000000),
+                      timestamp: Date.now()
+                  });
+              } else {
+                  reject(new Error('Simulated transfer failure.'));
+              }
+          }, 1500);
+      });
+  }
+  
+  // Handle logout
+  function handleLogout() {
+      auth.signOut()
+          .then(() => {
+              // Sign-out successful.
+              console.log('User signed out');
+              
+              // Log analytics event
+              logEvent('logout');
+          })
+          .catch((error) => {
+              // An error happened.
+              console.error('Sign out error:', error);
+          });
+  }
+  
+  // Handle Google Login
+  handleGoogleLogin = () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+          .then((result) => {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              const credential = result.credential;
+              const token = credential.accessToken;
+              // The signed-in user info.
+              const user = result.user;
+              console.log('Google sign in success', user);
+              hideModal(loginModal);
+              
+              // Log analytics event
+              logEvent('login', {
+                  method: 'google'
+              });
+          }).catch((error) => {
+              // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // The email of the user's account used.
+              const email = error.email;
+              // The firebase.auth.AuthCredential type that was used.
+              const credential = error.credential;
+              console.error('Google sign in error', error);
+              showNotification('Google sign in error: ' + errorMessage, 'error');
+          });
+  }
+  
+  // Handle Email Login
+  handleEmailLogin = (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      auth.signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+              // Signed in
+              const user = userCredential.user;
+              console.log('Email sign in success', user);
+              hideModal(loginModal);
+              
+              // Log analytics event
+              logEvent('login', {
+                  method: 'email'
+              });
+          })
+          .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.error('Email sign in error', error);
+              showNotification('Email sign in error: ' + errorMessage, 'error');
+          });
+  }
+  
+  // Show modal
+  showModal = (modal) => {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+  
+  // Hide modal
+  hideModal = (modal) => {
+      modal.style.display = 'none';
+      document.body.style.overflow = ''; // Allow scrolling
+  }
+  
+  // Toggle dark mode
+  function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light');
+      
+      const isDarkMode = document.body.classList.contains('dark');
+      localStorage.setItem('darkMode', isDarkMode);
+      
+      // Log analytics event
+      logEvent('dark_mode_toggled', {
+          dark_mode: isDarkMode
+      });
+  }
+  
+  // Handle newsletter signup
+  function handleNewsletterSignup(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('newsletterEmail').value;
+      
+      if (!email) {
+          showNotification('Please enter your email address.', 'error');
+          return;
+      }
+      
+      // Simulate signup process
+      showNotification('Thank you for subscribing to our newsletter!', 'success');
+      
+      // Log analytics event
+      logEvent('newsletter_signup', {
+          email: email
+      });
+  }
+  
+  // Send chat message
+  function sendChatMessage() {
+      const message = chatbotInput.value;
+      if (message.trim() === '') return;
+      
+      // Add user message to chat
+      addChatMessage(message, 'user');
+      
+      // Simulate bot response
+      setTimeout(() => {
+          const botResponse = getBotResponse(message);
+          addChatMessage(botResponse, 'bot');
+      }, 1000);
+      
+      // Clear input
+      chatbotInput.value = '';
+  }
+  
+  // Add chat message to UI
+  function addChatMessage(message, sender) {
+      const messageElement = document.createElement('div');
+      messageElement.className = `chatbot-message ${sender}`;
+      messageElement.textContent = message;
+      chatbotMessages.appendChild(messageElement);
+      
+      // Scroll to bottom
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+  
+  // Get bot response
+  function getBotResponse(message) {
+      message = message.toLowerCase();
+      
+      if (message.includes('hello') || message.includes('hi')) {
+          return 'Hello! How can I help you today?';
+      } else if (message.includes('events') || message.includes('tickets')) {
+          return 'You can browse our available events on the Events page. If you have purchased tickets, you can view them in the My Tickets section.';
+      } else if (message.includes('wallet') || message.includes('connect')) {
+          return 'To connect your wallet, click the Connect Wallet button in the navigation bar. Make sure you have MetaMask installed.';
+      } else if (message.includes('purchase') || message.includes('buy')) {
+          return 'To purchase tickets, add them to your cart and proceed to checkout. You will need to connect your wallet to complete the purchase.';
+      } else if (message.includes('transfer') || message.includes('sell')) {
+          return 'You can transfer or sell your tickets in the My Tickets section. Make sure you have connected your wallet.';
+      } else {
+          return 'I am sorry, I do not understand. Please ask another question.';
+      }
+  }
+  
+  // Log page view
+  logPageView = () => {
+      if (analytics) {
+          analytics.logEvent('page_view', {
+              page_path: window.location.pathname
+          });
+      } else {
+          console.log('Analytics not available');
+      }
+  }
+  
+  // Log event
+  function logEvent(eventName, params = {}) {
+      if (analytics) {
+          analytics.logEvent(eventName, params);
+      } else {
+          console.log(`Event: ${eventName}`, params);
+      }
+  }
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".section-content");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+                    entry.target.classList.add("visible"); // Add class when 20% visible
+                }
+            });
+        },
+        { threshold: [0.2] } // Trigger when 20% of the section is visible
+    );
+
+    sections.forEach((section) => {
+        observer.observe(section);
+
+        // Immediately show sections already in view (like hero section)
+        if (section.getBoundingClientRect().top < window.innerHeight) {
+            section.classList.add("visible");
+        }
+    });
+});
+
