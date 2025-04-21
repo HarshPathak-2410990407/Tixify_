@@ -395,3 +395,89 @@ const firebaseConfig = {
               updateGroupDiscountSummary();
           }
       });
+ticketQuantity?.addEventListener('change', updateGroupDiscountSummary);
+      groupEventSelect?.addEventListener('change', updateGroupDiscountSummary);
+      addGroupToCartBtn?.addEventListener('click', handleGroupPurchase);
+      enterLotteryBtn?.addEventListener('click', enterLottery);
+  
+      ticketTypeOptions?.forEach(option => {
+          option.addEventListener('click', () => {
+              ticketTypeOptions.forEach(opt => opt.classList.remove('selected'));
+              option.classList.add('selected');
+              selectedTicketType = option.getAttribute('data-type');
+              ticketTypeMultiplier = parseFloat(option.getAttribute('data-price-multiplier'));
+              updateCheckoutPrices();
+          });
+      });
+  }
+  
+  // Handle authentication state change
+  function handleAuthStateChange(user) {
+      if (user) {
+          // User is signed in
+          loginButton.style.display = 'none';
+          userProfile.style.display = 'flex';
+          userName.textContent = user.displayName || user.email.split('@')[0];
+          userPhoto.src = user.photoURL || '/placeholder.svg?height=32&width=32';
+          
+          // Enable transfer and sell buttons if user has tickets
+          updateTicketButtonsState();
+          
+          // Log analytics event
+          logEvent('login', {
+              method: user.providerData[0].providerId
+          });
+      } else {
+          // User is signed out
+          loginButton.style.display = 'block';
+          userProfile.style.display = 'none';
+      }
+  }
+  
+  // Toggle user menu
+  function toggleUserMenu() {
+      userMenu.classList.toggle('active');
+  }
+  
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+      nav.classList.toggle('active');
+      const spans = mobileMenuBtn.querySelectorAll('span');
+      
+      if (nav.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+      } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+          document.body.style.overflow = ''; // Allow scrolling
+      }
+  }
+  
+  // Check for previous wallet connection
+  function checkPreviousWalletConnection() {
+      const savedAddress = localStorage.getItem('walletAddress');
+      if (savedAddress && window.ethereum) {
+          userAddress = savedAddress;
+          updateWalletUI(savedAddress);
+          
+          // Initialize Web3
+          web3 = new Web3(window.ethereum);
+          
+          // Check if still connected
+          window.ethereum.request({ method: 'eth_accounts' })
+              .then(accounts => {
+                  if (accounts.length === 0) {
+                      // Wallet disconnected
+                      disconnectWallet();
+                  }
+              })
+              .catch(error => {
+                  console.error('Error checking accounts:', error);
+                  disconnectWallet();
+              });
+      }
+  }
