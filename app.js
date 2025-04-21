@@ -199,3 +199,102 @@ const firebaseConfig = {
           remaining: 200
       }
   ];
+// Initialize the application
+  document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+      logPageView();
+  });
+  
+  // Initialize the application
+  function initApp() {
+      // Load events
+      events = [...sampleEvents];
+      renderEvents();
+      
+      // Check if user is already logged in
+      auth.onAuthStateChanged(handleAuthStateChange);
+      
+      // Check for saved dark mode preference
+      if (localStorage.getItem('darkMode') === 'true') {
+          document.body.classList.add('dark');
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+      } else {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+      }
+      
+      // Check if wallet was previously connected
+      checkPreviousWalletConnection();
+      
+      // Load cart from localStorage
+      loadCart();
+      
+      // Set up event listeners
+      setupEventListeners();
+  
+      // Add this to the initApp function
+      startLotteryTimer();
+      updateLotteryEntries();
+  }
+  
+  // Set up event listeners
+  function setupEventListeners() {
+      // Wallet connection
+      connectWalletBtn.addEventListener('click', connectWallet);
+      
+      // Authentication
+      loginButton.addEventListener('click', () => showModal(loginModal));
+      document.querySelectorAll('.close-modal').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+              const modal = e.target.closest('.modal');
+              hideModal(modal);
+          });
+      });
+      googleLoginBtn.addEventListener('click', handleGoogleLogin);
+      emailLoginForm.addEventListener('submit', handleEmailLogin);
+      logoutButton?.addEventListener('click', handleLogout);
+      userMenuToggle?.addEventListener('click', toggleUserMenu);
+      
+      // Close modals when clicking outside
+      window.addEventListener('click', (event) => {
+          if (event.target.classList.contains('modal')) {
+              hideModal(event.target);
+          }
+          if (event.target !== userMenuToggle && event.target !== userMenu) {
+              userMenu?.classList.remove('active');
+          }
+      });
+      
+      // Mobile menu
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+      
+      // Navigation
+      exploreEventsBtn.addEventListener('click', () => {
+          document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+          logEvent('explore_events_clicked');
+      });
+      
+      // Event filtering
+      filterButton.addEventListener('click', filterEvents);
+      searchInput.addEventListener('input', filterEvents);
+      categoryFilter.addEventListener('change', filterEvents);
+      dateFilter.addEventListener('change', filterEvents);
+      
+      // Load more events
+      loadMoreEventsBtn?.addEventListener('click', loadMoreEvents);
+      
+      // Ticket tabs
+      ticketTabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+              ticketTabs.forEach(t => t.classList.remove('active'));
+              tab.classList.add('active');
+              filterTickets(tab.getAttribute('data-tab'));
+          });
+      });
+      
+      // Transfer ticket
+      transferTicketBtn?.addEventListener('click', () => {
+          populateTicketSelect();
+          showModal(transferModal);
+      });
