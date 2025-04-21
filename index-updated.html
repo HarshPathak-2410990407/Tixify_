@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tixify - Secure, transparent, and fraud-free blockchain ticketing platform">
+    <title>Tixify - Web3 Ticketing Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Tixify - Secure, transparent, and fraud-free blockchain ticketing platform">
+        <title>Tixify - Web3 Ticketing Platform</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <div class="container header-container">
+                <div class="logo">
+                    <h1>Tixify</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#events" class="nav-link">Events</a></li>
+                        <li><a href="#tickets" class="nav-link">My Tickets</a></li>
+                        <li><a href="#sell" class="nav-link">Sell Tickets</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button id="cartBtn" class="icon-btn" aria-label="View cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </button>
+                    <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                    <button id="loginButton" class="login-btn">Login</button>
+                    <div id="userProfile" class="user-profile" style="display: none;">
+                        <img id="userPhoto" src="/placeholder.svg?height=32&width=32" alt="User profile photo">
+                        <span id="userName">User</span>
+                        <button id="userMenuToggle" class="icon-btn" aria-label="User menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div id="userMenu" class="user-menu">
+                            <ul>
+                                <li><a href="#profile">My Profile</a></li>
+                                <li><a href="#tickets">My Tickets</a></li>
+                                <li><a href="#sell">My Listings</a></li>
+                                <li><a href="#settings">Settings</a></li>
+                                <li><button id="logoutButton">Logout</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+        
