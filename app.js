@@ -1020,3 +1020,83 @@ renderEvents(filteredEvents);
                           addTicketToMyTickets(newTicket);
                       }
                   }
+ // Update ticket buttons state
+                  updateTicketButtonsState();
+                  
+                  // Update lottery entries
+                  updateLotteryEntries();
+                  
+                  // Clear cart
+                  cart = [];
+                  updateCartUI();
+                  saveCart();
+                  
+                  // Hide checkout modal
+                  hideModal(checkoutModal);
+                  
+                  // Hide cart sidebar
+                  cartSidebar.classList.remove('active');
+                  cartOverlay.classList.remove('active');
+                  
+                  // Show success message
+                  showNotification('Purchase completed successfully! Your tickets are now available in the My Tickets section.', 'success');
+                  
+                  // Scroll to tickets section
+                  document.getElementById('tickets').scrollIntoView({ behavior: 'smooth' });
+                  
+                  // Log analytics event
+                  logEvent('purchase_completed', {
+                      total_amount: total.toFixed(2),
+                      items_count: cart.length,
+                      ticket_type: selectedTicketType
+                  });
+              })
+              .catch(error => {
+                  console.error('Transaction failed:', error);
+                  showNotification('Transaction failed. Please try again.', 'error');
+              })
+              .finally(() => {
+                  // Reset button state
+                  confirmPurchaseBtn.innerHTML = 'Confirm Purchase';
+                  confirmPurchaseBtn.disabled = false;
+              });
+      } catch (error) {
+          console.error('Transaction failed:', error);
+          showNotification('Transaction failed. Please try again.', 'error');
+          
+          // Reset button state
+          confirmPurchaseBtn.innerHTML = 'Confirm Purchase';
+          confirmPurchaseBtn.disabled = false;
+      }
+  }
+  
+  // Simulate blockchain transaction
+  function simulateBlockchainTransaction(amount) {
+      return new Promise((resolve) => {
+          // Simulate network delay
+          setTimeout(() => {
+              resolve({
+                  transactionHash: '0x' + Math.random().toString(16).substr(2, 64),
+                  blockNumber: Math.floor(Math.random() * 1000000),
+                  timestamp: Date.now()
+              });
+          }, 2000);
+      });
+  }
+  
+  // Add ticket to My Tickets section
+  function addTicketToMyTickets(ticket) {
+      const ticketContainer = document.getElementById('ticketContainer');
+      const noTicketsMessage = document.getElementById('noTicketsMessage');
+      
+      // Hide "No tickets purchased yet" message
+      if (noTicketsMessage) {
+          noTicketsMessage.style.display = 'none';
+      }
+      
+      // Create ticket element
+      const ticketElement = document.createElement('div');
+      ticketElement.className = 'ticket-item';
+      ticketElement.setAttribute('data-ticket-id', ticket.id);
+      
+      ticketElement.innerHTML = `
