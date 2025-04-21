@@ -602,7 +602,8 @@ const firebaseConfig = {
           button.disabled = false;
       });
   }
-// Render events
+  
+  // Render events
   function renderEvents(filteredEvents = null) {
       const eventsToRender = filteredEvents || events;
       eventList.innerHTML = '';
@@ -697,7 +698,7 @@ const firebaseConfig = {
           return matchesSearch && matchesCategory && matchesDate;
       });
       
-renderEvents(filteredEvents);
+      renderEvents(filteredEvents);
       
       // Log analytics event
       logEvent('filter_events', {
@@ -831,7 +832,8 @@ renderEvents(filteredEvents);
           
           cartItems.appendChild(cartItemElement);
       });
-  // Add event listeners to remove buttons
+      
+      // Add event listeners to remove buttons
       document.querySelectorAll('.cart-item-remove').forEach(button => {
           button.addEventListener('click', (e) => {
               const itemId = e.target.getAttribute('data-id');
@@ -939,7 +941,8 @@ renderEvents(filteredEvents);
       checkoutFee.textContent = `${fee.toFixed(2)} ETH`;
       checkoutTotal.textContent = `${total.toFixed(2)} ETH`;
   }
- // Handle checkout
+  
+  // Handle checkout
   function handleCheckout() {
       if (!userAddress) {
           alert('Please connect your wallet first.');
@@ -1020,7 +1023,8 @@ renderEvents(filteredEvents);
                           addTicketToMyTickets(newTicket);
                       }
                   }
- // Update ticket buttons state
+                  
+                  // Update ticket buttons state
                   updateTicketButtonsState();
                   
                   // Update lottery entries
@@ -1100,3 +1104,88 @@ renderEvents(filteredEvents);
       ticketElement.setAttribute('data-ticket-id', ticket.id);
       
       ticketElement.innerHTML = `
+          <h3>${ticket.eventName}</h3>
+          <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <strong>Date:</strong> ${ticket.date} at ${ticket.time}
+          </p>
+          <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <strong>Location:</strong> ${ticket.location}
+          </p>
+          <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              <strong>Price:</strong> ${ticket.price} ETH
+          </p>
+          <p>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <strong>Ticket ID:</strong> ${ticket.id}
+          </p>
+          <div class="qr-code">
+              <img src="/placeholder.svg?height=120&width=120" alt="QR Code for ${ticket.id}">
+          </div>
+          <div class="ticket-actions">
+              <button class="view-btn">View Details</button>
+              <button class="transfer-btn" data-ticket-id="${ticket.id}">Transfer</button>
+          </div>
+      `;
+      
+      ticketContainer.appendChild(ticketElement);
+      
+      // Add event listener to transfer button
+      const transferBtn = ticketElement.querySelector('.transfer-btn');
+      transferBtn.addEventListener('click', () => {
+          populateTicketSelect(ticket.id);
+          showModal(transferModal);
+      });
+  }
+  
+  // Update ticket buttons state
+  function updateTicketButtonsState() {
+      if (transferTicketBtn) {
+          transferTicketBtn.disabled = userTickets.length === 0;
+      }
+      
+      if (sellTicketBtn) {
+          sellTicketBtn.disabled = userTickets.length === 0;
+      }
+  }
+  
+  // Filter tickets
+  function filterTickets(tab) {
+      const ticketItems = document.querySelectorAll('.ticket-item');
+      const today = new Date();
+      
+      ticketItems.forEach(item => {
+          const ticketId = item.getAttribute('data-ticket-id');
+          const ticket = userTickets.find(t => t.id === ticketId);
+          
+          if (!ticket) return;
+          
+          const eventDate = new Date(ticket.date);
+          const isPast = eventDate < today;
+          
+          if (tab === 'upcoming' && !isPast) {
+              item.style.display = 'block';
+          } else if (tab === 'past' && isPast) {
+              item.style.display = 'block';
+          } else {
+              item.style.display = 'none';
+          }
+      });
+  }
+  
