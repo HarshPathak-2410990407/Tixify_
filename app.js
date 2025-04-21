@@ -1189,7 +1189,7 @@ const firebaseConfig = {
       });
   }
   
-// Populate ticket select dropdown
+  // Populate ticket select dropdown
   function populateTicketSelect(selectedTicketId = null) {
       if (!ticketSelect) return;
       
@@ -1299,7 +1299,8 @@ const firebaseConfig = {
               showNotification('Transfer failed. Please try again.', 'error');
           });
   }
- // Handle sell ticket
+  
+  // Handle sell ticket
   function handleSellTicket(e) {
       e.preventDefault();
       
@@ -1413,7 +1414,8 @@ const firebaseConfig = {
               </div>
           </div>
       `;
-  listingsContainer.appendChild(listingElement);
+      
+      listingsContainer.appendChild(listingElement);
       
       // Add event listeners to buttons
       const editBtn = listingElement.querySelector('.edit-btn');
@@ -1501,7 +1503,7 @@ const firebaseConfig = {
       updateGroupDiscountSummary();
   }
   
-function updateGroupDiscountSummary() {
+  function updateGroupDiscountSummary() {
       const quantity = parseInt(ticketQuantity.value);
       const eventId = groupEventSelect.value;
       
@@ -1618,6 +1620,7 @@ function updateGroupDiscountSummary() {
           total_price: totalPrice.toFixed(2)
       });
   }
+  
   // Add these functions for the Lottery feature
   function startLotteryTimer() {
       function updateTimer() {
