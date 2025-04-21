@@ -602,3 +602,98 @@ const firebaseConfig = {
           button.disabled = false;
       });
   }
+// Render events
+  function renderEvents(filteredEvents = null) {
+      const eventsToRender = filteredEvents || events;
+      eventList.innerHTML = '';
+      
+      if (eventsToRender.length === 0) {
+          eventList.innerHTML = '<p class="no-events-message">No events found matching your criteria.</p>';
+          return;
+      }
+      
+      eventsToRender.forEach(event => {
+          const eventCard = document.createElement('div');
+          eventCard.className = 'event-card';
+          eventCard.setAttribute('data-event-id', event.id);
+          eventCard.setAttribute('data-category', event.category);
+          
+          eventCard.innerHTML = `
+              <div class="event-image">
+                  <span class="event-category">${capitalizeFirstLetter(event.category)}</span>
+                  <img src="${event.image}" alt="${event.title}">
+              </div>
+              <div class="event-content">
+                  <h3>${event.title}</h3>
+                  <p class="event-date">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      ${event.date} at ${event.time}
+                  </p>
+                  <p class="event-price">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="12" y1="1" x2="12" y2="23"></line>
+                          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                      </svg>
+                      ${event.price} ETH
+                  </p>
+                  <p class="event-location">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      ${event.location}
+                  </p>
+                  <button class="add-to-cart-btn" ${!userAddress ? 'disabled' : ''} data-event-id="${event.id}">
+                      Add to Cart
+                  </button>
+              </div>
+          `;
+          
+          eventList.appendChild(eventCard);
+      });
+      
+      // Add event listeners to add to cart buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const eventId = e.target.getAttribute('data-event-id');
+              addToCart(eventId);
+          });
+      });
+  }
+  
+  // Filter events
+  function filterEvents() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const category = categoryFilter.value;
+      const dateFilterValue = document.getElementById('dateFilter').value;
+      
+      let filteredEvents = events.filter(event => {
+          const matchesSearch = event.title.toLowerCase().includes(searchTerm) || 
+                               event.location.toLowerCase().includes(searchTerm);
+          const matchesCategory = category === 'all' || event.category === category;
+          
+          // Date filtering logic
+          let matchesDate = true;
+          const eventDate = new Date(event.date);
+          const today = new Date();
+          
+          if (dateFilterValue === 'today') {
+              matchesDate = eventDate.toDateString() === today.toDateString();
+          } else if (dateFilterValue === 'week') {
+              const nextWeek = new Date(today);
+              nextWeek.setDate(today.getDate() + 7);
+              matchesDate = eventDate >= today && eventDate <= nextWeek;
+          } else if (dateFilterValue === 'month') {
+              const nextMonth = new Date(today);
+              nextMonth.setMonth(today.getMonth() + 1);
+              matchesDate = eventDate >= today && eventDate <= nextMonth;
+          }
+          
+          return matchesSearch && matchesCategory && matchesDate;
+      });
+      
