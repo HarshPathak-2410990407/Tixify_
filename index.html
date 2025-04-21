@@ -795,3 +795,103 @@
             </form>
         </div>
     </div>
+ <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Complete Your Purchase</h2>
+<div class="ticket-type-selector">
+    <h3>Select Ticket Type</h3>
+    <div class="ticket-types">
+        <div class="ticket-type-option selected" data-type="standard" data-price-multiplier="1">
+            <h4>Standard</h4>
+            <p class="price">Base Price</p>
+            <p class="description">Regular admission with standard seating</p>
+        </div>
+        <div class="ticket-type-option" data-type="vip" data-price-multiplier="1.5">
+            <h4>VIP</h4>
+            <p class="price">+50%</p>
+            <p class="description">Premium seating with exclusive perks</p>
+        </div>
+        <div class="ticket-type-option" data-type="student" data-price-multiplier="0.7">
+            <h4>Student</h4>
+            <p class="price">-30%</p>
+            <p class="description">Discounted tickets with valid student ID</p>
+        </div>
+    </div>
+</div>
+            <div id="checkoutSummary" class="checkout-summary">
+                <h3>Order Summary</h3>
+                <div id="checkoutItems" class="checkout-items">
+                    <!-- Checkout items will be added here dynamically -->
+                </div>
+                <div class="checkout-total">
+                    <div class="subtotal">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">0.00 ETH</span>
+                    </div>
+                    <div class="fees">
+                        <span>Service Fee:</span>
+                        <span id="checkoutFee">0.00 ETH</span>
+                    </div>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">0.00 ETH</span>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-actions">
+                <button id="confirmPurchaseBtn" class="primary-btn full-width">Confirm Purchase</button>
+                <button id="cancelCheckoutBtn" class="secondary-btn full-width">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+<div id="groupDiscountModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" aria-label="Close modal">&times;</button>
+        <h2>Group Discount</h2>
+        <p>Purchase multiple tickets together and save!</p>
+        
+        <div class="quantity-selector">
+            <label for="ticketQuantity">Number of Tickets:</label>
+            <div class="quantity-controls">
+                <button class="quantity-btn decrease-btn">-</button>
+                <input type="number" id="ticketQuantity" class="quantity-input" value="1" min="1" max="20">
+                <button class="quantity-btn increase-btn">+</button>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="groupEventSelect">Select Event:</label>
+            <select id="groupEventSelect" required>
+                <option value="">Choose an event</option>
+                <!-- Events will be populated dynamically -->
+            </select>
+        </div>
+        
+        <div class="discount-summary">
+            <div class="discount-row">
+                <span class="discount-label">Base Price:</span>
+                <span id="basePrice" class="discount-value">0.00 ETH</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Quantity:</span>
+                <span id="quantityValue" class="discount-value">1</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Discount Rate:</span>
+                <span id="discountRate" class="discount-value">0%</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Savings:</span>
+                <span id="savingsValue" class="discount-value savings">0.00 ETH</span>
+            </div>
+            <div class="discount-row total">
+                <span class="discount-label">Total Price:</span>
+                <span id="totalGroupPrice" class="discount-value">0.00 ETH</span>
+            </div>
+        </div>
+        
+        <button id="addGroupToCartBtn" class="primary-btn full-width">Add to Cart</button>
+    </div>
+</div>
