@@ -100,3 +100,102 @@ const firebaseConfig = {
   const hoursElement = document.getElementById('hours');
   const minutesElement = document.getElementById('minutes');
   const secondsElement = document.getElementById('seconds');
+// Web3 Variables
+  let web3;
+  let userAddress = '';
+  let connectedChainId;
+  let userTickets = [];
+  let userListings = [];
+  let events = [];
+  let cart = [];
+  
+  // Declare undeclared variables
+  let logPageView;
+  let showModal;
+  let hideModal;
+  let handleGoogleLogin;
+  let handleEmailLogin;
+  let updateCheckoutPrices;
+  
+  // Add these variables to the global variables section
+  let selectedTicketType = 'standard';
+  let ticketTypeMultiplier = 1;
+  let lotteryEntries = 0;
+  let lotteryEndDate = new Date();
+  lotteryEndDate.setDate(lotteryEndDate.getDate() + 14); // Set lottery end date to 14 days from now
+  
+  // Sample event data
+  const sampleEvents = [
+      {
+          id: 1,
+          title: "Concert: Rock Night",
+          date: "October 25, 2025",
+          time: "8:00 PM",
+          price: "0.1",
+          location: "Crypto Arena, New York",
+          image: "/rocknight.jpg?height=200&width=300",
+          category: "concert",
+          description: "Experience an unforgettable night of rock music with top bands and artists.",
+          remaining: 150
+      },
+      {
+          id: 2,
+          title: "Conference: Web3 Summit",
+          date: "November 10, 2025",
+          time: "9:00 AM",
+          price: "0.2",
+          location: "Blockchain Center, San Francisco",
+          image: "/conference.jpg?height=200&width=300",
+          category: "conference",
+          description: "Join industry leaders to discuss the future of Web3 and blockchain technology.",
+          remaining: 200
+      },
+      {
+          id: 3,
+          title: "Sports: Championship Finals",
+          date: "December 15, 2025",
+          time: "7:30 PM",
+          price: "0.15",
+          location: "Crypto Stadium, Miami",
+          image: "/sports.jpg?height=200&width=300",
+          category: "sports",
+          description: "Watch the most anticipated championship finals of the year live.",
+          remaining: 100
+      },
+      {
+          id: 4,
+          title: "Festival: Blockchain Music Fest",
+          date: "January 20, 2026",
+          time: "12:00 PM",
+          price: "0.25",
+          location: "Decentralized Park, Austin",
+          image: "/musicfest.jpg?height=200&width=300",
+          category: "festival",
+          description: "A three-day music festival celebrating artists who embrace blockchain technology.",
+          remaining: 500
+      },
+      {
+          id: 5,
+          title: "Conference: DeFi Innovations",
+          date: "February 5, 2026",
+          time: "10:00 AM",
+          price: "0.18",
+          location: "Finance Hub, Chicago",
+          image: "/deficonference.jpg?height=200&width=300",
+          category: "conference",
+          description: "Explore the latest innovations in decentralized finance and cryptocurrency.",
+          remaining: 150
+      },
+      {
+          id: 6,
+          title: "Concert: Electronic Vibes",
+          date: "March 12, 2026",
+          time: "9:00 PM",
+          price: "0.12",
+          location: "Digital Arena, Los Angeles",
+          image: "/electronicvibes.jpg?height=200&width=300",
+          category: "concert",
+          description: "Experience the best electronic music with world-renowned DJs and producers.",
+          remaining: 200
+      }
+  ];
