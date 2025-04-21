@@ -831,3 +831,111 @@ renderEvents(filteredEvents);
           
           cartItems.appendChild(cartItemElement);
       });
+  // Add event listeners to remove buttons
+      document.querySelectorAll('.cart-item-remove').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const itemId = e.target.getAttribute('data-id');
+              removeFromCart(itemId);
+          });
+      });
+      
+      // Update total
+      cartTotal.textContent = `${total.toFixed(2)} ETH`;
+  }
+  
+  // Remove from cart
+  function removeFromCart(itemId) {
+      const itemIndex = cart.findIndex(item => item.id == itemId);
+      
+      if (itemIndex !== -1) {
+          const removedItem = cart.splice(itemIndex, 1)[0];
+          
+          // Update cart UI
+          updateCartUI();
+          
+          // Save cart to localStorage
+          saveCart();
+          
+          // Show notification
+          showNotification(`${removedItem.title} removed from cart.`, 'info');
+          
+          // Log analytics event
+          logEvent('remove_from_cart', {
+              event_id: removedItem.eventId,
+              event_name: removedItem.title
+          });
+      }
+  }
+  
+  // Save cart to localStorage
+  function saveCart() {
+      localStorage.setItem('tixifyCart', JSON.stringify(cart));
+  }
+  
+  // Load cart from localStorage
+  function loadCart() {
+      const savedCart = localStorage.getItem('tixifyCart');
+      if (savedCart) {
+          cart = JSON.parse(savedCart);
+          updateCartUI();
+      }
+  }
+  
+  // Toggle cart
+  function toggleCart() {
+      cartSidebar.classList.toggle('active');
+      cartOverlay.classList.toggle('active');
+      
+      if (cartSidebar.classList.contains('active')) {
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+      } else {
+          document.body.style.overflow = ''; // Allow scrolling
+      }
+  }
+  
+  // Prepare checkout
+  function prepareCheckout() {
+      checkoutItems.innerHTML = '';
+      
+      let subtotal = 0;
+      
+      cart.forEach(item => {
+          const checkoutItem = document.createElement('div');
+          checkoutItem.className = 'checkout-item';
+          
+          if (item.isGroupPurchase) {
+              checkoutItem.innerHTML = `
+                  <div class="checkout-item-details">
+                      <div class="checkout-item-title">${item.title}</div>
+                      <div class="checkout-item-info">${item.date} at ${item.time}</div>
+                      <div class="checkout-item-info">Group discount: ${(item.groupDiscount * 100).toFixed(0)}%</div>
+                  </div>
+                  <div class="checkout-item-price">${item.totalPrice} ETH</div>
+              `;
+              
+              subtotal += parseFloat(item.totalPrice);
+          } else {
+              const itemPrice = parseFloat(item.price) * ticketTypeMultiplier;
+              
+              checkoutItem.innerHTML = `
+                  <div class="checkout-item-details">
+                      <div class="checkout-item-title">${item.title}</div>
+                      <div class="checkout-item-info">${item.date} at ${item.time}</div>
+                      <div class="checkout-item-info">Ticket type: ${selectedTicketType.charAt(0).toUpperCase() + selectedTicketType.slice(1)}</div>
+                  </div>
+                  <div class="checkout-item-price">${itemPrice.toFixed(2)} ETH</div>
+              `;
+              
+              subtotal += itemPrice;
+          }
+          
+          checkoutItems.appendChild(checkoutItem);
+      });
+      
+      const fee = subtotal * 0.05; // 5% service fee
+      const total = subtotal + fee;
+      
+      checkoutSubtotal.textContent = `${subtotal.toFixed(2)} ETH`;
+      checkoutFee.textContent = `${fee.toFixed(2)} ETH`;
+      checkoutTotal.textContent = `${total.toFixed(2)} ETH`;
+  }
