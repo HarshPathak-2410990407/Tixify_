@@ -298,3 +298,100 @@ const firebaseConfig = {
           populateTicketSelect();
           showModal(transferModal);
       });
+ transferForm?.addEventListener('submit', handleTicketTransfer);
+      
+      // Sell ticket
+      sellTicketBtn?.addEventListener('click', () => {
+          populateSellTicketSelect();
+          showModal(sellTicketModal);
+      });
+      
+      sellTicketForm?.addEventListener('submit', handleSellTicket);
+      
+      // Create listing
+      createListingBtn?.addEventListener('click', () => {
+          showModal(createListingModal);
+      });
+      
+      createListingForm?.addEventListener('submit', handleCreateListing);
+      
+      // Sell my tickets
+      sellMyTicketsBtn?.addEventListener('click', () => {
+          if (userTickets.length > 0) {
+              populateSellTicketSelect();
+              showModal(sellTicketModal);
+          } else {
+              showNotification('You don\'t have any tickets to sell. Purchase tickets first.', 'warning');
+          }
+      });
+      
+      // Cart
+      cartBtn.addEventListener('click', toggleCart);
+      closeCart.addEventListener('click', toggleCart);
+      cartOverlay.addEventListener('click', toggleCart);
+      
+      // Checkout
+      checkoutBtn.addEventListener('click', () => {
+          if (cart.length > 0) {
+              prepareCheckout();
+              showModal(checkoutModal);
+          }
+      });
+      
+      confirmPurchaseBtn.addEventListener('click', handleCheckout);
+      cancelCheckoutBtn.addEventListener('click', () => hideModal(checkoutModal));
+      
+      // Chatbot
+      openChatbotBtn.addEventListener('click', () => {
+          chatbot.style.display = 'flex';
+          openChatbotBtn.style.display = 'none';
+          logEvent('chatbot_opened');
+      });
+      
+      closeChatbotBtn.addEventListener('click', () => {
+          chatbot.style.display = 'none';
+          openChatbotBtn.style.display = 'flex';
+      });
+      
+      sendMessageBtn.addEventListener('click', sendChatMessage);
+      chatbotInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+              sendChatMessage();
+          }
+      });
+      
+      // Dark mode toggle
+      darkModeToggle.addEventListener('click', toggleDarkMode);
+      
+      // Newsletter
+      newsletterForm?.addEventListener('submit', handleNewsletterSignup);
+      
+      // Add event listeners to featured event button
+      document.querySelector('.featured-btn')?.addEventListener('click', (e) => {
+          const eventId = e.target.getAttribute('data-event-id');
+          if (eventId) {
+              addToCart(eventId);
+          }
+      });
+  
+      // Add these to the setupEventListeners function
+      groupDiscountBtn?.addEventListener('click', () => {
+          populateGroupEventSelect();
+          showModal(groupDiscountModal);
+      });
+  
+      decreaseBtn?.addEventListener('click', () => {
+          const currentValue = parseInt(ticketQuantity.value);
+          if (currentValue > 1) {
+              ticketQuantity.value = currentValue - 1;
+              updateGroupDiscountSummary();
+          }
+      });
+  
+      increaseBtn?.addEventListener('click', () => {
+          const currentValue = parseInt(ticketQuantity.value);
+          if (currentValue < 20) {
+              ticketQuantity.value = currentValue + 1;
+              updateGroupDiscountSummary();
+          }
+      });
