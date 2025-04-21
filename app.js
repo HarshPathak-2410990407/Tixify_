@@ -1189,3 +1189,113 @@ const firebaseConfig = {
       });
   }
   
+// Populate ticket select dropdown
+  function populateTicketSelect(selectedTicketId = null) {
+      if (!ticketSelect) return;
+      
+      // Clear existing options except the first one
+      while (ticketSelect.options.length > 1) {
+          ticketSelect.remove(1);
+      }
+      
+      // Add user tickets as options
+      userTickets.forEach(ticket => {
+          const option = document.createElement('option');
+          option.value = ticket.id;
+          option.textContent = `${ticket.eventName} - ${ticket.date}`;
+          
+          if (selectedTicketId && ticket.id === selectedTicketId) {
+              option.selected = true;
+          }
+          
+          ticketSelect.appendChild(option);
+      });
+  }
+  
+  // Populate sell ticket select dropdown
+  function populateSellTicketSelect(selectedTicketId = null) {
+      if (!sellTicketSelect) return;
+      
+      // Clear existing options except the first one
+      while (sellTicketSelect.options.length > 1) {
+          sellTicketSelect.remove(1);
+      }
+      
+      // Add user tickets as options
+      userTickets.forEach(ticket => {
+          // Skip tickets that are already listed
+          if (userListings.some(listing => listing.ticketId === ticket.id)) {
+              return;
+          }
+          
+          const option = document.createElement('option');
+          option.value = ticket.id;
+          option.textContent = `${ticket.eventName} - ${ticket.date}`;
+          
+          if (selectedTicketId && ticket.id === selectedTicketId) {
+              option.selected = true;
+          }
+          
+          sellTicketSelect.appendChild(option);
+      });
+  }
+  
+  // Handle ticket transfer
+  function handleTicketTransfer(e) {
+      e.preventDefault();
+      
+      const ticketId = ticketSelect.value;
+      const recipientAddress = document.getElementById('recipientAddress').value;
+      const message = document.getElementById('transferMessage').value;
+      
+      if (!ticketId || !recipientAddress) {
+          showNotification('Please select a ticket and enter a recipient address.', 'error');
+          return;
+      }
+      
+      // Validate Ethereum address
+      if (!isValidEthereumAddress(recipientAddress)) {
+          showNotification('Please enter a valid Ethereum address.', 'error');
+          return;
+      }
+      
+      // Simulate transfer
+      simulateTicketTransfer(ticketId, recipientAddress, message)
+          .then(() => {
+              // Remove ticket from user's tickets
+              const ticketIndex = userTickets.findIndex(t => t.id === ticketId);
+              if (ticketIndex !== -1) {
+                  userTickets.splice(ticketIndex, 1);
+              }
+              
+              // Remove ticket from UI
+              const ticketElement = document.querySelector(`[data-ticket-id="${ticketId}"]`);
+              if (ticketElement) {
+                  ticketElement.remove();
+              }
+              
+              // Show success message
+              showNotification('Ticket transferred successfully!', 'success');
+              
+              // Update ticket buttons state
+              updateTicketButtonsState();
+              
+              // Hide modal
+              hideModal(transferModal);
+              
+              // Check if no tickets left
+              if (userTickets.length === 0) {
+                  document.getElementById('noTicketsMessage').style.display = 'block';
+              }
+              
+              // Log analytics event
+              logEvent('ticket_transferred', {
+                  ticket_id: ticketId,
+                  recipient: recipientAddress.substring(0, 10) + '...'
+              });
+          })
+          .catch(error => {
+              console.error('Transfer failed:', error);
+              showNotification('Transfer failed. Please try again.', 'error');
+          });
+  }
