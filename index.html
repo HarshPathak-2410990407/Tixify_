@@ -705,3 +705,93 @@
                         <option value="">Choose a ticket</option>
                     </select>
                 </div>
+<div class="form-group">
+                    <label for="recipientAddress">Recipient Wallet Address</label>
+                    <input type="text" id="recipientAddress" placeholder="0x..." required>
+                </div>
+                <div class="form-group">
+                    <label for="transferMessage">Message (Optional)</label>
+                    <textarea id="transferMessage" placeholder="Add a personal message..."></textarea>
+                </div>
+                <button type="submit" class="primary-btn full-width">Transfer Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="sellTicketModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Sell Your Ticket</h2>
+            <form id="sellTicketForm">
+                <div class="form-group">
+                    <label for="sellTicketSelect">Select Ticket</label>
+                    <select id="sellTicketSelect" required>
+                        <option value="">Choose a ticket</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticketPrice">Price (ETH)</label>
+                    <input type="number" id="ticketPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketDescription">Description (Optional)</label>
+                    <textarea id="ticketDescription" placeholder="Add details about your ticket..."></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="termsAgree" required>
+                    <label for="termsAgree">I agree to the <a href="#">terms and conditions</a> for selling tickets</label>
+                </div>
+                <button type="submit" class="primary-btn full-width">List Ticket for Sale</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="createListingModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Create New Listing</h2>
+            <form id="createListingForm">
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" placeholder="Enter event name" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventTime">Event Time</label>
+                    <input type="time" id="eventTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventLocation">Event Location</label>
+                    <input type="text" id="eventLocation" placeholder="Enter venue and city" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketCategory">Ticket Category</label>
+                    <select id="ticketCategory" required>
+                        <option value="">Select category</option>
+                        <option value="concert">Concert</option>
+                        <option value="conference">Conference</option>
+                        <option value="sports">Sports</option>
+                        <option value="festival">Festival</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="listingPrice">Price (ETH)</label>
+                    <input type="number" id="listingPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketProof">Ticket Proof (Image)</label>
+                    <input type="file" id="ticketProof" accept="image/*" required>
+                    <p class="form-hint">Upload an image of your ticket for verification</p>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="listingTermsAgree" required>
+                    <label for="listingTermsAgree">I confirm this is a valid ticket and agree to the <a href="#">terms and conditions</a></label>
+                </div>
+                <button type="submit" class="primary-btn full-width">Create Listing</button>
+            </form>
+        </div>
+    </div>
