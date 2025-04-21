@@ -1413,3 +1413,91 @@ const firebaseConfig = {
               </div>
           </div>
       `;
+  listingsContainer.appendChild(listingElement);
+      
+      // Add event listeners to buttons
+      const editBtn = listingElement.querySelector('.edit-btn');
+      const removeBtn = listingElement.querySelector('.remove-btn');
+      
+      editBtn.addEventListener('click', () => {
+          // Implement edit listing functionality
+          alert('Edit listing functionality would be implemented here.');
+      });
+      
+      removeBtn.addEventListener('click', () => {
+          removeListing(listing.id);
+      });
+  }
+  
+  // Remove listing
+  function removeListing(listingId) {
+      const confirmRemove = confirm('Are you sure you want to remove this listing?');
+      if (!confirmRemove) return;
+      
+      // Find listing
+      const listingIndex = userListings.findIndex(l => l.id === listingId);
+      if (listingIndex === -1) return;
+      
+      // Remove from array
+      userListings.splice(listingIndex, 1);
+      
+      // Remove from UI
+      const listingElement = document.querySelector(`[data-listing-id="${listingId}"]`);
+      if (listingElement) {
+          listingElement.remove();
+      }
+      
+      // Check if no listings left
+      if (userListings.length === 0) {
+          document.getElementById('noListingsMessage').style.display = 'block';
+      }
+      
+      // Show notification
+      showNotification('Listing removed successfully.', 'success');
+      
+      // Log analytics event
+      logEvent('listing_removed', {
+          listing_id: listingId
+      });
+  }
+  
+  // Handle create listing
+  function handleCreateListing(e) {
+      e.preventDefault();
+      
+      const eventName = document.getElementById('eventName').value;
+      const eventDate = document.getElementById('eventDate').value;
+      const eventTime = document.getElementById('eventTime').value;
+      const eventLocation = document.getElementById('eventLocation').value;
+      const category = document.getElementById('ticketCategory').value;
+      const price = document.getElementById('listingPrice').value;
+      const ticketProof = document.getElementById('ticketProof').files[0];
+      
+      if (!eventName || !eventDate || !eventTime || !eventLocation || !category || !price || !ticketProof) {
+          showNotification('Please fill in all required fields.', 'error');
+          return;
+      }
+      
+      // Simulate verification process
+      showNotification("Your listing is being verified.", 'info');
+  }
+  
+  // Add these new functions for the Group Discount feature
+  function populateGroupEventSelect() {
+      // Clear existing options except the first one
+      while (groupEventSelect.options.length > 1) {
+          groupEventSelect.remove(1);
+      }
+      
+      // Add events as options
+      events.forEach(event => {
+          const option = document.createElement('option');
+          option.value = event.id;
+          option.textContent = `${event.title} - ${event.price} ETH`;
+          groupEventSelect.appendChild(option);
+      });
+      
+      // Update summary after populating
+      updateGroupDiscountSummary();
+  }
+  
