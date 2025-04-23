@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tixify - Ticket Verification">
+    <title>Tixify - Verify Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .verify-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .verify-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .verify-form {
+            margin-bottom: 30px;
+        }
+        
+        .verify-result {
+            padding: 20px;
+            border-radius: var(--border-radius-sm);
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .verify-result.valid {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid var(--success);
+        }
+        
+        .verify-result.invalid {
+            background-color: rgba(244, 67, 54, 0.1);
+            border: 1px solid var(--error);
+        }
+        
+        .ticket-details {
+            margin-top: 20px;
+        }
