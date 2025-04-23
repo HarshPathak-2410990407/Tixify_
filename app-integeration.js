@@ -1,27 +1,4 @@
-// This file extends the existing app.js with blockchain integration
 
-// Wait for both the DOM and Web3 to be ready
-document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize the original app
-    initApp();
-    logPageView();
-    
-    // Initialize blockchain contracts
-    const contractsInitialized = await window.contractsAPI.initContracts();
-    if (contractsInitialized) {
-        console.log("Blockchain contracts initialized successfully");
-        // Load blockchain data
-        loadBlockchainData();
-    } else {
-        console.warn("Blockchain contracts initialization failed");
-    }
-});
-
-// Load data from blockchain
-async function loadBlockchainData() {
-    try {
-        // Load user's tickets from blockchain
-        const blockchainTickets = await window.contractsAPI.getUserTickets();
         if (blockchainTickets.length > 0) {
             // Clear existing tickets
             userTickets = [];
