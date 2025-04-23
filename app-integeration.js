@@ -203,3 +203,106 @@ function calculateCartTotal() {
     });
     return total.toFixed(2);
 }
+// Override handleTicketTransfer to use blockchain
+handleTicketTransfer = async function(e) {
+    e.preventDefault();
+    
+    const ticketId = ticketSelect.value;
+    const recipientAddress = document.getElementById('recipientAddress').value;
+    
+    if (!ticketId || !recipientAddress) {
+        showNotification('Please select a ticket and enter a recipient address.', 'error');
+        return;
+    }
+    
+    // Validate Ethereum address
+    if (!isValidEthereumAddress(recipientAddress)) {
+        showNotification('Please enter a valid Ethereum address.', 'error');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        const submitButton = transferForm.querySelector('button[type="submit"]');
+        submitButton.innerHTML = 'Processing...';
+        submitButton.disabled = true;
+        
+        // Transfer ticket on blockchain
+        const result = await window.contractsAPI.transferTicket(ticketId, recipientAddress);
+        
+        if (!result.success) {
+            throw new Error(result.error || "Transfer failed");
+        }
+        
+        // Remove ticket from user's tickets
+        const ticketIndex = userTickets.findIndex(t => t.id === ticketId);
+        if (ticketIndex !== -1) {
+            userTickets.splice(ticketIndex, 1);
+        }
+        
+        // Remove ticket from UI
+        const ticketElement = document.querySelector(`[data-ticket-id="${ticketId}"]`);
+        if (ticketElement) {
+            ticketElement.remove();
+        }
+        
+        // Show success message
+        showNotification('Ticket transferred successfully!', 'success');
+        
+        // Update ticket buttons state
+        updateTicketButtonsState();
+        
+        // Hide modal
+        hideModal(transferModal);
+        
+        // Check if no tickets left
+        if (userTickets.length === 0) {
+            document.getElementById('noTicketsMessage').style.display = 'block';
+        }
+        
+        // Log analytics event
+        logEvent('ticket_transferred', {
+            ticket_id: ticketId,
+            recipient: recipientAddress.substring(0, 10) + '...'
+        });
+    } catch (error) {
+        console.error('Transfer failed:', error);
+        showNotification('Transfer failed: ' + error.message, 'error');
+    } finally {
+        // Reset button state
+        const submitButton = transferForm.querySelector('button[type="submit"]');
+        submitButton.innerHTML = 'Transfer Ticket';
+        submitButton.disabled = false;
+    }
+};
+
+// Override handleSellTicket to use blockchain
+handleSellTicket = async function(e) {
+    e.preventDefault();
+    
+    const ticketId = sellTicketSelect.value;
+    const price = document.getElementById('ticketPrice').value;
+    
+    if (!ticketId || !price) {
+        showNotification('Please select a ticket and enter a price.', 'error');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        const submitButton = sellTicketForm.querySelector('button[type="submit"]');
+        submitButton.innerHTML = 'Processing...';
+        submitButton.disabled = true;
+        
+        // List ticket for sale on blockchain
+        const result = await window.contractsAPI.listTicketForSale(ticketId, price);
+        
+        if (!result.success) {
+            throw new Error(result.error || "Listing failed");
+        }
+        
+        // Get ticket details
+        const ticket = userTickets.find(t => t.id === ticketId);
+        if (!ticket) {
+            throw new Error("Ticket not found");
+        }
