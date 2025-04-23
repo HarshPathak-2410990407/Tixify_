@@ -9,12 +9,7 @@
                 addTicketToMyTickets(ticket);
             });
             
-            // Update ticket buttons state
-            updateTicketButtonsState();
-            
-            // Update lottery entries
-            updateLotteryEntries();
-            
+ 
             // Hide "No tickets purchased yet" message if there are tickets
             document.getElementById('noTicketsMessage').style.display = 'none';
         }
