@@ -349,3 +349,56 @@ async function purchaseGroupTickets(typeId, quantity, value) {
             ticketIds: result.events.GroupTicketsPurchased.returnValues.ticketIds,
             transactionHash: result.transactionHash
         };
+  } catch (error) {
+        console.error("Error purchasing group tickets:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// Get user's tickets
+async function getUserTickets() {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        // This is a placeholder. You'll need to implement the actual method
+        // based on your contract's structure
+        const ticketIds = await ticketMarketplaceContract.methods.getTicketsByOwner(accounts[0]).call();
+        
+        const tickets = [];
+        for (const id of ticketIds) {
+            const ticketInfo = await ticketMarketplaceContract.methods.getTicketDetails(id).call();
+            tickets.push({
+                id: id,
+                eventId: ticketInfo.eventId,
+                eventName: ticketInfo.eventName,
+                date: ticketInfo.date,
+                time: ticketInfo.time,
+                location: ticketInfo.location,
+                price: web3.utils.fromWei(ticketInfo.price, 'ether'),
+                status: ticketInfo.used ? 'used' : 'active'
+            });
+        }
+        
+        return tickets;
+    } catch (error) {
+        console.error("Error fetching user tickets:", error);
+        return [];
+    }
+}
+
+// Export functions for use in app.js
+window.contractsAPI = {
+    initContracts,
+    getTicketTypes,
+    purchaseTickets,
+    transferTicket,
+    listTicketForSale,
+    buyTicket,
+    validateTicket,
+    useTicket,
+    calculateGroupDiscount,
+    purchaseGroupTickets,
+    getUserTickets
+};
