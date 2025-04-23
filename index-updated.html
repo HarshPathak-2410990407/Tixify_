@@ -848,3 +848,53 @@ e<!DOCTYPE html>
                         <div class="fees">
                             <span>Service Fee:</span>
                             <span id="checkoutFee">0.00 ETH</span>
+                   </div>
+                        <div class="total">
+                            <span>Total:</span>
+                            <span id="checkoutTotal">0.00 ETH</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-actions">
+                    <button id="confirmPurchaseBtn" class="primary-btn full-width">Confirm Purchase</button>
+                    <button id="cancelCheckoutBtn" class="secondary-btn full-width">Cancel</button>
+                </div>
+            </div>
+        </div>
+    
+    <div id="groupDiscountModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Group Discount</h2>
+            <p>Purchase multiple tickets together and save!</p>
+            
+            <div class="quantity-selector">
+                <label for="ticketQuantity">Number of Tickets:</label>
+                <div class="quantity-controls">
+                    <button class="quantity-btn decrease-btn">-</button>
+                    <input type="number" id="ticketQuantity" class="quantity-input" value="1" min="1" max="20">
+                    <button class="quantity-btn increase-btn">+</button>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="groupEventSelect">Select Event:</label>
+                <select id="groupEventSelect" required>
+                    <option value="">Choose an event</option>
+                    <!-- Events will be populated dynamically -->
+                </select>
+            </div>
+            
+            <div class="discount-summary">
+                <div class="discount-row">
+                    <span class="discount-label">Base Price:</span>
+                    <span id="basePrice" class="discount-value">0.00 ETH</span>
+                </div>
+                <div class="discount-row">
+                    <span class="discount-label">Quantity:</span>
+                    <span id="quantityValue" class="discount-value">1</span>
+                </div>
+                <div class="discount-row">
+                    <span class="discount-label">Discount Rate:</span>
+                    <span id="discountRate" class="discount-value">0%</span>
+                </div>
