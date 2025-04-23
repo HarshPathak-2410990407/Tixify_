@@ -2048,4 +2048,67 @@ footer {
     .hero-content h2 {
         font-size: 28px;
     }
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
     
+    .hero-buttons button {
+        width: 100%;
+    }
+    
+    .event-list, .ticket-container, .listings-container, .team-members {
+        grid-template-columns: 1fr;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+    }
+    
+    .modal-content {
+        padding: 20px 15px;
+    }
+    
+    .ticket-actions-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .ticket-actions-group button {
+        width: 100%;
+    }
+}
+
+/* Enhanced Dark Mode */
+.dark {
+    --primary: #9c27b0;
+    --primary-light: #ba68c8;
+    --primary-dark: #7b1fa2;
+    --text-light: #ffffff;
+    --text-dark: #f5f5f5;
+    --text-muted: #b0b0b0;
+    --background: #121212;
+    --card-bg: #1e1e1e;
+    --card-hover: #2d2d2d;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --border-color: #333333;
+}
+
+.dark .moon-icon {
+    display: none;
+}
+
+.light .sun-icon {
+    display: none;
+}
+
+/* Dark mode enhancements */
+.dark header {
+    background-color: #1a1a1a;
+    border-bottom: 1px solid var(--border-color);
+}
