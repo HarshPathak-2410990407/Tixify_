@@ -250,3 +250,51 @@ async function purchaseTickets(typeId, quantity, value) {
                 from: accounts[0],
                 value: web3.utils.toWei(value.toString(), 'ether')
             });
+  } catch (error) {
+        console.error("Error listing ticket for sale:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// Buy a ticket from the marketplace
+async function buyTicket(ticketId, price) {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const result = await ticketMarketplaceContract.methods.buyTicket(ticketId)
+            .send({
+                from: accounts[0],
+                value: web3.utils.toWei(price.toString(), 'ether')
+            });
+        
+        return {
+            success: true,
+            transactionHash: result.transactionHash
+        };
+    } catch (error) {
+        console.error("Error buying ticket:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// Validate a ticket
+async function validateTicket(ticketId) {
+    try {
+        const isValid = await accessContract.methods.validateTicket(ticketId).call();
+        return {
+            success: true,
+            isValid: isValid
+        };
+    } catch (error) {
+        console.error("Error validating ticket:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
