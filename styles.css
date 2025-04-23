@@ -993,3 +993,103 @@ nav ul li a:hover::after {
 .tab-btn:hover:not(.active) {
     background-color: var(--card-hover);
 }
+
+.ticket-actions-group {
+    display: flex;
+    gap: 10px;
+}
+
+.no-tickets-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px 0;
+}
+
+.ticket-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.ticket-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.ticket-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--primary);
+}
+
+.ticket-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.ticket-item h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.ticket-item p {
+    margin: 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-item p strong {
+    color: var(--primary);
+}
+
+.ticket-item .qr-code {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ticket-item .qr-code img {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+.ticket-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.ticket-actions button {
+    flex: 1;
+    padding: 8px 0;
+    font-size: 13px;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+    border: none;
+}
+
+.ticket-actions .view-btn {
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.ticket-actions .transfer-btn {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
