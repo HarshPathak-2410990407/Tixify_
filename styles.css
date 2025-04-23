@@ -806,3 +806,104 @@ nav ul li a:hover::after {
     overflow: hidden;
    
 }
+.benefit-item svg {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.benefit-item h3 {
+    font-size: 18px;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+
+
+.sell-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.sell-option-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.sell-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.sell-option-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.sell-option-card p {
+    margin-bottom: 25px;
+    color: var(--text-muted);
+}
+
+
+.my-listings {
+    margin-top: 40px;
+}
+
+.my-listings h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.no-listings-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px 0;
+    grid-column: 1 / -1;
+}
+
+.listing-item {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.listing-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.listing-header {
+    padding: 15px;
+    background-color: var(--primary-light);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listing-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+}
