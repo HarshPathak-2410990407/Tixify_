@@ -1,13 +1,4 @@
 
-            // Hide "No tickets purchased yet" message if there are tickets
-            document.getElementById('noTicketsMessage').style.display = 'none';
-        }
-        
-        // Load ticket types from blockchain
-        const ticketTypes = await window.contractsAPI.getTicketTypes();
-        if (ticketTypes.length > 0) {
-            // Update events with blockchain data
-            events = ticket
                 location: "Blockchain Venue",
                 image: `/placeholder.svg?height=200&width=300&text=${encodeURIComponent(type.name)}`,
                 category: "blockchain",
