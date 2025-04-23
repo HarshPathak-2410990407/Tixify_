@@ -13,983 +13,959 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Tixify - Secure, transparent, and fraud-free blockchain ticketing platform">
-        <title>Tixify - Web3 Ticketing Platform</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <!-- Favicon -->
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-    </head>
-    <body>
-        <header>
-            <div class="container header-container">
-                <div class="logo">
-                    <h1>Tixify</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home" class="nav-link">Home</a></li>
-                        <li><a href="#events" class="nav-link">Events</a></li>
-                        <li><a href="#tickets" class="nav-link">My Tickets</a></li>
-                        <li><a href="#sell" class="nav-link">Sell Tickets</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
-                    </ul>
-                </nav>
-                <div class="auth-buttons">
-                    <button id="cartBtn" class="icon-btn" aria-label="View cart">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                        <span id="cartCount" class="cart-count">0</span>
-                    </button>
-                    <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
-                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </button>
-                    <button id="loginButton" class="login-btn">Login</button>
-                    <div id="userProfile" class="user-profile" style="display: none;">
-                        <img id="userPhoto" src="/placeholder.svg?height=32&width=32" alt="User profile photo">
-                        <span id="userName">User</span>
-                        <button id="userMenuToggle" class="icon-btn" aria-label="User menu">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </button>
-                        <div id="userMenu" class="user-menu">
-                            <ul>
-                                <li><a href="#profile">My Profile</a></li>
-                                <li><a href="#tickets">My Tickets</a></li>
-                                <li><a href="#sell">My Listings</a></li>
-                                <li><a href="#settings">Settings</a></li>
-                                <li><button id="logoutButton">Logout</button></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Tixify</h1>
             </div>
-        </header>
-        
-        <main>
-            <section id="home" class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/grad.jpg') no-repeat center center/coverht;">
-                <div class="hero-content section-content">
-                    <h2>Where every <span class="purple-text">ticket</span> is <br>
-                        <span class="purple-text">Safe, Secure and Yours</span>
-                    </h2>
-                    <p>Buy, sell, and transfer tickets with confidence using blockchain technology</p>
-                    <div class="hero-buttons">
-                        <button id="connectWallet" class="primary-btn">
-                            <svg class="wallet-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                                <line x1="16" y1="12" x2="16" y2="12"></line>
-                            </svg>
-                            Connect Wallet
-                        </button>
-                        <button id="exploreEvents" class="secondary-btn" style="color:#ffffff ;">Explore Events</button>
-                    </div>
-                    <p id="walletStatus" class="wallet-status"></p>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">10K+</span>
-                        <span class="stat-label">Tickets Sold</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Events</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">0%</span>
-                        <span class="stat-label">Fraud Rate</span>
-                    </div>
-                </div>
-            </section>
-        
-            <section id="events" class="events">
-                <div class="container section-content">
-                    <h2>Upcoming Events</h2>
-                    <div class="filter-bar">
-                        <div class="search-container">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <input type="text" id="searchEvents" placeholder="Search events...">
-                        </div>
-                        <div class="filter-controls">
-                            <select id="categoryFilter" aria-label="Filter by category">
-                                <option value="all">All Categories</option>
-                                <option value="concert">Concerts</option>
-                                <option value="conference">Conferences</option>
-                                <option value="sports">Sports</option>
-                                <option value="festival">Festivals</option>
-                            </select>
-                            <select id="dateFilter" aria-label="Filter by date">
-                                <option value="all">All Dates</option>
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                            </select>
-                            <button id="filterButton" class="filter-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                                </svg>
-                                Filter
-                            </button>
-                        </div>
-                    </div>
-    <div class="group-discount-banner">
-        <div class="group-discount-info">
-            <div class="group-discount-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-            </div>
-            <div class="group-discount-text">
-                <h3>Group Discounts Available!</h3>
-                <p>Save up to 25% when booking 5+ tickets together</p>
-            </div>
-        </div>
-        <button id="groupDiscountBtn" class="group-discount-btn">Learn More</button>
-    </div>
-                    <div id="eventList" class="event-list">
-                        <!-- Event cards will be dynamically generated here -->
-                    </div>
-                    <div id="loadMoreEvents" class="load-more">
-                        <button class="load-more-btn">Load More Events</button>
-                    </div>
-                </div>
-            </section>
-    
-    <section id="lottery" class="lottery-section">
-        <div class="container section-content">
-            <h2>Ticket Lottery</h2>
-            <div class="lottery-content">
-                <div class="lottery-info">
-                    <p>Every ticket purchase gives you a chance to win amazing prizes in our monthly lottery!</p>
-                    <p>The more tickets you buy, the higher your chances of winning.</p>
-                </div>
-                
-                <div class="lottery-prizes">
-                    <div class="prize-item">
-                        <div class="prize-icon">🎫</div>
-                        <h3>Free Tickets</h3>
-                        <p>Win free tickets to any upcoming event of your choice</p>
-                    </div>
-                    <div class="prize-item">
-                        <div class="prize-icon">🎁</div>
-                        <h3>VIP Upgrade</h3>
-                        <p>Get your standard tickets upgraded to VIP experience</p>
-                    </div>
-                    <div class="prize-item">
-                        <div class="prize-icon">💰</div>
-                        <h3>ETH Rewards</h3>
-                        <p>Win cryptocurrency rewards to spend on our platform</p>
-                    </div>
-                </div>
-                
-                <div class="lottery-timer">
-                    <h3>Next Drawing In:</h3>
-                    <div class="timer-display">
-                        <div class="timer-unit">
-                            <div id="days" class="timer-value">14</div>
-                            <div class="timer-label">Days</div>
-                        </div>
-                        <div class="timer-unit">
-                            <div id="hours" class="timer-value">22</div>
-                            <div class="timer-label">Hours</div>
-                        </div>
-                        <div class="timer-unit">
-                            <div id="minutes" class="timer-value">45</div>
-                            <div class="timer-label">Minutes</div>
-                        </div>
-                        <div class="timer-unit">
-                            <div id="seconds" class="timer-value">18</div>
-                            <div class="timer-label">Seconds</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="lottery-cta">
-                    <button id="enterLotteryBtn" class="lottery-btn">Enter with Your Tickets</button>
-                    <p class="lottery-entries">You have <span id="userEntries">0</span> entries in the current lottery</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-            <section id="featured" class="featured-event">
-                <div class="container section-content">
-                    <div class="featured-content">
-                        <div class="featured-text">
-                            <span class="featured-label">Featured Event</span>
-                            <h2>Web3 Summit 2025</h2>
-                            <p class="featured-date">November 10-12, 2025</p>
-                            <p class="featured-description">Join the biggest blockchain and Web3 conference of the year. Network with industry leaders, attend workshops, and discover the future of decentralized technology.</p>
-                            <div class="featured-details">
-                                <div class="detail-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
-                                    <span>Blockchain Center, San Francisco</span>
-                                </div>
-                                <div class="detail-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <span>3 Days, 9:00 AM - 6:00 PM</span>
-                                </div>
-                                <div class="detail-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                                    </svg>
-                                    <span>0.2 ETH</span>
-                                </div>
-                            </div>
-                            <button class="primary-btn featured-btn" data-event-id="2">Add to Cart</button>
-                        </div>
-                        <div class="featured-image">
-                            <img src="/conference.jpg" alt="Web3 Summit 2025">
-                        </div>
-                    </div>
-                </div>
-            </section>
-    
-            <section id="sell" class="sell-section">
-                <div class="container section-content">
-                    <h2>Sell Your Tickets</h2>
-                    <div class="sell-content">
-                        <div class="sell-intro">
-                            <p>Have tickets you can't use? List them securely on our platform and let other fans enjoy the event.</p>
-                            <div class="scrolling-wrapper">
-                                
-                            <div class="sell-benefits">
-                                <div class="benefit-item" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Secure Transactions</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Fast Payouts</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <div>
-                                        <h3>Wide Audience</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Secure Transactions</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Fast Payouts</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <div>
-                                        <h3>Wide Audience</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Secure Transactions</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Fast Payouts</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <div>
-                                        <h3>Wide Audience</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Secure Transactions</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <div>
-                                        <h3>Fast Payouts</h3>
-                                        
-                                    </div>
-                                </div>
-                                <div class="benefit-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                    <div>
-                                        <h3>Wide Audience</h3>
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-    
-                        </div>
-                        </div>
-                        
-                        <div class="sell-options">
-                            <div class="sell-option-card">
-                                <h3>Sell Your Tickets</h3>
-                                <p>List tickets you've purchased through Tixify</p>
-                                <button id="sellMyTicketsBtn" class="primary-btn">Sell My Tickets</button>
-                            </div>
-                            <div class="sell-option-card">
-                                <h3>Create New Listing</h3>
-                                <p>List tickets from other platforms (verification required)</p>
-                                <button id="createListingBtn" class="secondary-btn">Create Listing</button>
-                            </div>
-                        </div>
-                        
-                        <div id="myListings" class="my-listings">
-                            <h3>My Active Listings</h3>
-                            <div id="listingsContainer" class="listings-container">
-                                <p id="noListingsMessage" class="no-listings-message">You don't have any active listings. Start selling your tickets today!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-    
-            <section id="tickets" class="tickets">
-                <div class="container">
-                    <h2>My Tickets</h2>
-                    <div class="ticket-controls">
-                        <div class="ticket-tabs">
-                            <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
-                            <button class="tab-btn" data-tab="past">Past Events</button>
-                        </div>
-                        <div class="ticket-actions-group">
-                            <button id="transferTicketBtn" class="secondary-btn" disabled>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 1l4 4-4 4"></path>
-                                    <path d="M21 5H9"></path>
-                                    <path d="M7 23l-4-4 4-4"></path>
-                                    <path d="M3 19h12"></path>
-                                </svg>
-                                Transfer
-                            </button>
-                            <button id="sellTicketBtn" class="secondary-btn" disabled>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                </svg>
-                                Sell
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ticket-list">
-                        <p id="noTicketsMessage" class="no-tickets-message">No tickets purchased yet. Explore events to buy tickets.</p>
-                        <div id="ticketContainer" class="ticket-container"></div>
-                    </div>
-                </div>
-            </section>
-    
-            <section id="about" class="about">
-                <div class="container section-content">
-                    <h2>About Tixify</h2>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>Tixify is a decentralized ticketing platform built on blockchain technology. We ensure secure, tamper-proof tickets and eliminate middlemen, providing a seamless experience for both event organizers and attendees.</p>
-                            <p>Our platform leverages the power of blockchain to create a transparent and fraud-free ticketing ecosystem where tickets cannot be counterfeited or scalped at unreasonable prices.</p>
-                            <h3>Key Features:</h3>
-                            <ul class="feature-list">
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <span>Secure blockchain-based tickets</span>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <span>No middlemen or excessive fees</span>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <span>Transparent pricing</span>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <span>Easy transfer of ownership</span>
-                                </li>
-                                <li>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    <span>Verified authenticity</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="about-image">
-                            <img src="/tixify.jpg" alt="About Tixify">
-                        </div>
-                    </div>
-                </div>
-            </section>
-    
-            <section id="team" class="team-section">
-                <div class="container section-content">
-                    <h2>Meet Our Team</h2>
-                    <p class="team-intro">The talented developers behind Tixify's innovative blockchain ticketing platform</p>
-                    
-                    <div class="team-members">
-                        <div class="team-member">
-                            <div class="member-image">
-                                <img src="/muskaan.jpg" alt="Muskaan">
-                            </div>
-                            <h3>Muskaan</h3>
-                            <p class="member-role">Blockchain Developer</p>
-                            <p class="member-bio">Muskaan led the blockchain integration, implementing smart contracts and ensuring secure transactions on the Tixify platform.</p>
-                            <div class="member-social">
-                                <a href="https://github.com/muskaan1212" aria-label="GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                                <a href="https://www.linkedin.com/in/muskaan-soni-aa6559324?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                        <rect x="2" y="9" width="4" height="12"></rect>
-                                        <circle cx="4" cy="4" r="2"></circle>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="team-member">
-                            <div class="member-image">
-                                <img src="/harsh.jpg" alt="Harsh">
-                            </div>
-                            <h3>Harsh</h3>
-                            <p class="member-role">Full Stack Developer</p>
-                            <p class="member-bio">Harsh developed both the frontend and backend systems, creating a seamless user experience while ensuring robust server-side functionality.</p>
-                            <div class="member-social">
-                                <a href="https://github.com/CLASHERFTW" aria-label="GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                                <a href="https://www.linkedin.com/in/harsh-pathak-849722228?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                        <rect x="2" y="9" width="4" height="12"></rect>
-                                        <circle cx="4" cy="4" r="2"></circle>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="team-member">
-                            <div class="member-image">
-                                <img src="/jasmeet.jpg" alt="Jasmeet">
-                            </div>
-                            <h3>Jasmeet</h3>
-                            <p class="member-role">UI/UX Developer</p>
-                            <p class="member-bio">Jasmeet refined the frontend experience, enhancing the user interface and adding new features to make Tixify more intuitive and user-friendly.</p>
-                            <div class="member-social">
-                                <a href="https://github.com/jasmeett09" aria-label="GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                    </svg>
-                                </a>
-                                <a href="https://www.linkedin.com/in/jasmeet-kaur-50b74931b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                        <rect x="2" y="9" width="4" height="12"></rect>
-                                        <circle cx="4" cy="4" r="2"></circle>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-    
-            <section id="newsletter" class="newsletter">
-                <div class="container">
-                    <div class="newsletter-content">
-                        <h2>Stay Updated</h2>
-                        <p>Subscribe to our newsletter to get the latest updates on events and features.</p>
-                        <form id="newsletterForm" class="newsletter-form">
-                            <input type="email" id="newsletterEmail" placeholder="Your email address" required>
-                            <button type="submit" class="primary-btn">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </main>
-    
-        <!-- Cart Sidebar -->
-        <div id="cartSidebar" class="cart-sidebar">
-            <div class="cart-header">
-                <h3>Your Cart</h3>
-                <button id="closeCart" class="close-btn" aria-label="Close cart">×</button>
-            </div>
-            <div id="cartItems" class="cart-items">
-                <p id="emptyCartMessage" class="empty-cart-message">Your cart is empty.</p>
-                <!-- Cart items will be added here dynamically -->
-            </div>
-            <div class="cart-summary">
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="cartTotal">0.00 ETH</span>
-                </div>
-                <button id="checkoutBtn" class="primary-btn full-width" disabled>Proceed to Checkout</button>
-            </div>
-        </div>
-        <div id="cartOverlay" class="cart-overlay"></div>
-    
-        <div id="chatbot" class="chatbot">
-            <div class="chatbot-header">
-                <h3>Tixify Assistant</h3>
-                <button id="closeChatbot" class="close-btn" aria-label="Close chatbot">×</button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot">
-                    <p>Hello! I'm your Tixify assistant. How can I help you today?</p>
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Type your message...">
-                <button id="sendMessage" aria-label="Send message">
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#events" class="nav-link">Events</a></li>
+                    <li><a href="#tickets" class="nav-link">My Tickets</a></li>
+                    <li><a href="#sell" class="nav-link">Sell Tickets</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="cartBtn" class="icon-btn" aria-label="View cart">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span id="cartCount" class="cart-count">0</span>
+                </button>
+                <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-            </div>
-        </div>
-        <button id="openChatbot" class="open-chatbot" aria-label="Open chat assistant">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-        </button>
-    
-        <!-- Modals -->
-        <div id="loginModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <h2>Login to Tixify</h2>
-                <div class="login-options">
-                    <button id="googleLogin" class="social-login-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                            <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+                <button id="loginButton" class="login-btn">Login</button>
+                <div id="userProfile" class="user-profile" style="display: none;">
+                    <img id="userPhoto" src="/placeholder.svg?height=32&width=32" alt="User profile photo">
+                    <span id="userName">User</span>
+                    <button id="userMenuToggle" class="icon-btn" aria-label="User menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
-                        Login with Google
                     </button>
-                    <div class="or-divider">
-                        <span>or</span>
+                    <div id="userMenu" class="user-menu">
+                        <ul>
+                            <li><a href="#profile">My Profile</a></li>
+                            <li><a href="#tickets">My Tickets</a></li>
+                            <li><a href="#sell">My Listings</a></li>
+                            <li><a href="#settings">Settings</a></li>
+                            <li><button id="logoutButton">Logout</button></li>
+                        </ul>
                     </div>
-                    <form id="emailLoginForm">
-                        <div class="form-group">
-                            <label for="emailInput">Email</label>
-                            <input type="email" id="emailInput" placeholder="Your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="passwordInput">Password</label>
-                            <input type="password" id="passwordInput" placeholder="Your password" required>
-                            <a href="#" class="forgot-password">Forgot password?</a>
-                        </div>
-                        <button type="submit" class="primary-btn full-width">Login</button>
-                    </form>
-                    <p class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
                 </div>
             </div>
+            <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
+    </header>
     
-        <div id="transferModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <h2>Transfer Ticket</h2>
-                <form id="transferForm">
-                    <div class="form-group">
-                        <label for="ticketSelect">Select Ticket</label>
-                        <select id="ticketSelect" required>
-                            <option value="">Choose a ticket</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipientAddress">Recipient Wallet Address</label>
-                        <input type="text" id="recipientAddress" placeholder="0x..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="transferMessage">Message (Optional)</label>
-                        <textarea id="transferMessage" placeholder="Add a personal message..."></textarea>
-                    </div>
-                    <button type="submit" class="primary-btn full-width">Transfer Ticket</button>
-                </form>
+    <main>
+        <section id="home" class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/grad.jpg') no-repeat center center/coverht;">
+            <div class="hero-content section-content">
+                <h2>Where every <span class="purple-text">ticket</span> is <br>
+                    <span class="purple-text">Safe, Secure and Yours</span>
+                </h2>
+                <p>Buy, sell, and transfer tickets with confidence using blockchain technology</p>
+                <div class="hero-buttons">
+                    <button id="connectWallet" class="primary-btn">
+                        <svg class="wallet-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                            <line x1="16" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Connect Wallet
+                    </button>
+                    <button id="exploreEvents" class="secondary-btn" style="color:#ffffff ;">Explore Events</button>
+                </div>
+                <p id="walletStatus" class="wallet-status"></p>
             </div>
-        </div>
-    
-        <div id="sellTicketModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <h2>Sell Your Ticket</h2>
-                <form id="sellTicketForm">
-                    <div class="form-group">
-                        <label for="sellTicketSelect">Select Ticket</label>
-                        <select id="sellTicketSelect" required>
-                            <option value="">Choose a ticket</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticketPrice">Price (ETH)</label>
-                        <input type="number" id="ticketPrice" step="0.01" min="0.01" placeholder="0.00" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticketDescription">Description (Optional)</label>
-                        <textarea id="ticketDescription" placeholder="Add details about your ticket..."></textarea>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="termsAgree" required>
-                        <label for="termsAgree">I agree to the <a href="#">terms and conditions</a> for selling tickets</label>
-                    </div>
-                    <button type="submit" class="primary-btn full-width">List Ticket for Sale</button>
-                </form>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Tickets Sold</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Events</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">0%</span>
+                    <span class="stat-label">Fraud Rate</span>
+                </div>
             </div>
-        </div>
+        </section>
     
-        <div id="createListingModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <h2>Create New Listing</h2>
-                <form id="createListingForm">
-                    <div class="form-group">
-                        <label for="eventName">Event Name</label>
-                        <input type="text" id="eventName" placeholder="Enter event name" required>
+        <section id="events" class="events">
+            <div class="container section-content">
+                <h2>Upcoming Events</h2>
+                <div class="filter-bar">
+                    <div class="search-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="searchEvents" placeholder="Search events...">
                     </div>
-                    <div class="form-group">
-                        <label for="eventDate">Event Date</label>
-                        <input type="date" id="eventDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventTime">Event Time</label>
-                        <input type="time" id="eventTime" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventLocation">Event Location</label>
-                        <input type="text" id="eventLocation" placeholder="Enter venue and city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticketCategory">Ticket Category</label>
-                        <select id="ticketCategory" required>
-                            <option value="">Select category</option>
-                            <option value="concert">Concert</option>
-                            <option value="conference">Conference</option>
+                    <div class="filter-controls">
+                        <select id="categoryFilter" aria-label="Filter by category">
+                            <option value="all">All Categories</option>
+                            <option value="concert">Concerts</option>
+                            <option value="conference">Conferences</option>
                             <option value="sports">Sports</option>
-                            <option value="festival">Festival</option>
-                            <option value="other">Other</option>
+                            <option value="festival">Festivals</option>
                         </select>
+                        <select id="dateFilter" aria-label="Filter by date">
+                            <option value="all">All Dates</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                        <button id="filterButton" class="filter-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            Filter
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="listingPrice">Price (ETH)</label>
-                        <input type="number" id="listingPrice" step="0.01" min="0.01" placeholder="0.00" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticketProof">Ticket Proof (Image)</label>
-                        <input type="file" id="ticketProof" accept="image/*" required>
-                        <p class="form-hint">Upload an image of your ticket for verification</p>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="listingTermsAgree" required>
-                        <label for="listingTermsAgree">I confirm this is a valid ticket and agree to the <a href="#">terms and conditions</a></label>
-                    </div>
-                    <button type="submit" class="primary-btn full-width">Create Listing</button>
-                </form>
-            </div>
+                </div>
+<div class="group-discount-banner">
+    <div class="group-discount-info">
+        <div class="group-discount-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
         </div>
-    
-        <div id="checkoutModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <h2>Complete Your Purchase</h2>
-    <div class="ticket-type-selector">
-        <h3>Select Ticket Type</h3>
-        <div class="ticket-types">
-            <div class="ticket-type-option selected" data-type="standard" data-price-multiplier="1">
-                <h4>Standard</h4>
-                <p class="price">Base Price</p>
-                <p class="description">Regular admission with standard seating</p>
+        <div class="group-discount-text">
+            <h3>Group Discounts Available!</h3>
+            <p>Save up to 25% when booking 5+ tickets together</p>
+        </div>
+    </div>
+    <button id="groupDiscountBtn" class="group-discount-btn">Learn More</button>
+</div>
+                <div id="eventList" class="event-list">
+                    <!-- Event cards will be dynamically generated here -->
+                </div>
+                <div id="loadMoreEvents" class="load-more">
+                    <button class="load-more-btn">Load More Events</button>
+                </div>
             </div>
-            <div class="ticket-type-option" data-type="vip" data-price-multiplier="1.5">
-                <h4>VIP</h4>
-                <p class="price">+50%</p>
-                <p class="description">Premium seating with exclusive perks</p>
+        </section>
+
+<section id="lottery" class="lottery-section">
+    <div class="container section-content">
+        <h2>Ticket Lottery</h2>
+        <div class="lottery-content">
+            <div class="lottery-info">
+                <p>Every ticket purchase gives you a chance to win amazing prizes in our monthly lottery!</p>
+                <p>The more tickets you buy, the higher your chances of winning.</p>
             </div>
-            <div class="ticket-type-option" data-type="student" data-price-multiplier="0.7">
-                <h4>Student</h4>
-                <p class="price">-30%</p>
-                <p class="description">Discounted tickets with valid student ID</p>
+            
+            <div class="lottery-prizes">
+                <div class="prize-item">
+                    <div class="prize-icon">🎫</div>
+                    <h3>Free Tickets</h3>
+                    <p>Win free tickets to any upcoming event of your choice</p>
+                </div>
+                <div class="prize-item">
+                    <div class="prize-icon">🎁</div>
+                    <h3>VIP Upgrade</h3>
+                    <p>Get your standard tickets upgraded to VIP experience</p>
+                </div>
+                <div class="prize-item">
+                    <div class="prize-icon">💰</div>
+                    <h3>ETH Rewards</h3>
+                    <p>Win cryptocurrency rewards to spend on our platform</p>
+                </div>
+            </div>
+            
+            <div class="lottery-timer">
+                <h3>Next Drawing In:</h3>
+                <div class="timer-display">
+                    <div class="timer-unit">
+                        <div id="days" class="timer-value">14</div>
+                        <div class="timer-label">Days</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div id="hours" class="timer-value">22</div>
+                        <div class="timer-label">Hours</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div id="minutes" class="timer-value">45</div>
+                        <div class="timer-label">Minutes</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div id="seconds" class="timer-value">18</div>
+                        <div class="timer-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lottery-cta">
+                <button id="enterLotteryBtn" class="lottery-btn">Enter with Your Tickets</button>
+                <p class="lottery-entries">You have <span id="userEntries">0</span> entries in the current lottery</p>
             </div>
         </div>
     </div>
-                <div id="checkoutSummary" class="checkout-summary">
-                    <h3>Order Summary</h3>
-                    <div id="checkoutItems" class="checkout-items">
-                        <!-- Checkout items will be added here dynamically -->
+</section>
+
+        <section id="featured" class="featured-event">
+            <div class="container section-content">
+                <div class="featured-content">
+                    <div class="featured-text">
+                        <span class="featured-label">Featured Event</span>
+                        <h2>Web3 Summit 2025</h2>
+                        <p class="featured-date">November 10-12, 2025</p>
+                        <p class="featured-description">Join the biggest blockchain and Web3 conference of the year. Network with industry leaders, attend workshops, and discover the future of decentralized technology.</p>
+                        <div class="featured-details">
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>Blockchain Center, San Francisco</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>3 Days, 9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                                </svg>
+                                <span>0.2 ETH</span>
+                            </div>
+                        </div>
+                        <button class="primary-btn featured-btn" data-event-id="2">Add to Cart</button>
                     </div>
-                    <div class="checkout-total">
-                        <div class="subtotal">
-                            <span>Subtotal:</span>
-                            <span id="checkoutSubtotal">0.00 ETH</span>
+                    <div class="featured-image">
+                        <img src="/conference.jpg" alt="Web3 Summit 2025">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sell" class="sell-section">
+            <div class="container section-content">
+                <h2>Sell Your Tickets</h2>
+                <div class="sell-content">
+                    <div class="sell-intro">
+                        <p>Have tickets you can't use? List them securely on our platform and let other fans enjoy the event.</p>
+                        <div class="scrolling-wrapper">
+                            
+                        <div class="sell-benefits">
+                            <div class="benefit-item" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Secure Transactions</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Fast Payouts</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <div>
+                                    <h3>Wide Audience</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Secure Transactions</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Fast Payouts</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <div>
+                                    <h3>Wide Audience</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Secure Transactions</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Fast Payouts</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <div>
+                                    <h3>Wide Audience</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Secure Transactions</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <div>
+                                    <h3>Fast Payouts</h3>
+                                    
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <div>
+                                    <h3>Wide Audience</h3>
+                                    
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="fees">
-                            <span>Service Fee:</span>
-                            <span id="checkoutFee">0.00 ETH</span>
+
+                    </div>
+                    </div>
+                    
+                    <div class="sell-options">
+                        <div class="sell-option-card">
+                            <h3>Sell Your Tickets</h3>
+                            <p>List tickets you've purchased through Tixify</p>
+                            <button id="sellMyTicketsBtn" class="primary-btn">Sell My Tickets</button>
                         </div>
-                        <div class="total">
-                            <span>Total:</span>
-                            <span id="checkoutTotal">0.00 ETH</span>
+                        <div class="sell-option-card">
+                            <h3>Create New Listing</h3>
+                            <p>List tickets from other platforms (verification required)</p>
+                            <button id="createListingBtn" class="secondary-btn">Create Listing</button>
+                        </div>
+                    </div>
+                    
+                    <div id="myListings" class="my-listings">
+                        <h3>My Active Listings</h3>
+                        <div id="listingsContainer" class="listings-container">
+                            <p id="noListingsMessage" class="no-listings-message">You don't have any active listings. Start selling your tickets today!</p>
                         </div>
                     </div>
                 </div>
-                <div class="checkout-actions">
-                    <button id="confirmPurchaseBtn" class="primary-btn full-width">Confirm Purchase</button>
-                    <button id="cancelCheckoutBtn" class="secondary-btn full-width">Cancel</button>
-                </div>
             </div>
-        </div>
-    
-    <div id="groupDiscountModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" aria-label="Close modal">&times;</button>
-            <h2>Group Discount</h2>
-            <p>Purchase multiple tickets together and save!</p>
-            
-            <div class="quantity-selector">
-                <label for="ticketQuantity">Number of Tickets:</label>
-                <div class="quantity-controls">
-                    <button class="quantity-btn decrease-btn">-</button>
-                    <input type="number" id="ticketQuantity" class="quantity-input" value="1" min="1" max="20">
-                    <button class="quantity-btn increase-btn">+</button>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="groupEventSelect">Select Event:</label>
-                <select id="groupEventSelect" required>
-                    <option value="">Choose an event</option>
-                    <!-- Events will be populated dynamically -->
-                </select>
-            </div>
-            
-            <div class="discount-summary">
-                <div class="discount-row">
-                    <span class="discount-label">Base Price:</span>
-                    <span id="basePrice" class="discount-value">0.00 ETH</span>
-                </div>
-                <div class="discount-row">
-                    <span class="discount-label">Quantity:</span>
-                    <span id="quantityValue" class="discount-value">1</span>
-                </div>
-                <div class="discount-row">
-                    <span class="discount-label">Discount Rate:</span>
-                    <span id="discountRate" class="discount-value">0%</span>
-                </div>
-                <div class="discount-row">
-                    <span class="discount-label">Savings:</span>
-                    <span id="savingsValue" class="discount-value savings">0.00 ETH</span>
-                </div>
-                <div class="discount-row total">
-                    <span class="discount-label">Total Price:</span>
-                    <span id="totalGroupPrice" class="discount-value">0.00 ETH</span>
-                </div>
-            </div>
-            
-            <button id="addGroupToCartBtn" class="primary-btn full-width">Add to Cart</button>
-        </div>
-    </div>
-    
-        <footer>
+        </section>
+
+        <section id="tickets" class="tickets">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Tixify</h3>
-                        <p>Your Decentralized Ticketing Solution</p>
-                        <div class="social-links">
-                            <a href="#" aria-label="Twitter">
+                <h2>My Tickets</h2>
+                <div class="ticket-controls">
+                    <div class="ticket-tabs">
+                        <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+                        <button class="tab-btn" data-tab="past">Past Events</button>
+                    </div>
+                    <div class="ticket-actions-group">
+                        <button id="transferTicketBtn" class="secondary-btn" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 1l4 4-4 4"></path>
+                                <path d="M21 5H9"></path>
+                                <path d="M7 23l-4-4 4-4"></path>
+                                <path d="M3 19h12"></path>
+                            </svg>
+                            Transfer
+                        </button>
+                        <button id="sellTicketBtn" class="secondary-btn" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Sell
+                        </button>
+                    </div>
+                </div>
+                <div class="ticket-list">
+                    <p id="noTicketsMessage" class="no-tickets-message">No tickets purchased yet. Explore events to buy tickets.</p>
+                    <div id="ticketContainer" class="ticket-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container section-content">
+                <h2>About Tixify</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Tixify is a decentralized ticketing platform built on blockchain technology. We ensure secure, tamper-proof tickets and eliminate middlemen, providing a seamless experience for both event organizers and attendees.</p>
+                        <p>Our platform leverages the power of blockchain to create a transparent and fraud-free ticketing ecosystem where tickets cannot be counterfeited or scalped at unreasonable prices.</p>
+                        <h3>Key Features:</h3>
+                        <ul class="feature-list">
+                            <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                            </a>
-                            <a href="#" aria-label="Discord">
+                                <span>Secure blockchain-based tickets</span>
+                            </li>
+                            <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 9a5 5 0 0 0-5-5H5a5 5 0 0 0-5 5v6a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V9z"></path>
-                                    <path d="M12 12v.01"></path>
-                                    <path d="M8 12v.01"></path>
-                                    <path d="M16 12v.01"></path>
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                            </a>
-                            <a href="#" aria-label="GitHub">
+                                <span>No middlemen or excessive fees</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>Transparent pricing</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>Easy transfer of ownership</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>Verified authenticity</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="/tixify.jpg" alt="About Tixify">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="team-section">
+            <div class="container section-content">
+                <h2>Meet Our Team</h2>
+                <p class="team-intro">The talented developers behind Tixify's innovative blockchain ticketing platform</p>
+                
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="/muskaan.jpg" alt="Muskaan">
+                        </div>
+                        <h3>Muskaan</h3>
+                        <p class="member-role">Blockchain Developer</p>
+                        <p class="member-bio">Muskaan led the blockchain integration, implementing smart contracts and ensuring secure transactions on the Tixify platform.</p>
+                        <div class="member-social">
+                            <a href="https://github.com/muskaan1212" aria-label="GitHub">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                                 </svg>
                             </a>
+                            <a href="https://www.linkedin.com/in/muskaan-soni-aa6559324?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#events">Events</a></li>
-                            <li><a href="#tickets">My Tickets</a></li>
-                            <li><a href="#sell">Sell Tickets</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#team">Our Team</a></li>
-                        </ul>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="/harsh.jpg" alt="Harsh">
+                        </div>
+                        <h3>Harsh</h3>
+                        <p class="member-role">Full Stack Developer</p>
+                        <p class="member-bio">Harsh developed both the frontend and backend systems, creating a seamless user experience while ensuring robust server-side functionality.</p>
+                        <div class="member-social">
+                            <a href="https://github.com/CLASHERFTW" aria-label="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/harsh-pathak-849722228?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <div class="footer-section">
-                        <h3>Resources</h3>
-                        <ul>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">API</a></li>
-                            <li><a href="#">Developers</a></li>
-                            <li><a href="#">Blog</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Contact Us</h3>
-                        <p>Email: <a href="/cdn-cgi/l/email-protection#9df4f3fbf2dde9f4e5f4fbe4b3fef2f0"><span class="__cf_email__" data-cfemail="6f060109002f1b0617060916410c0002">[email&#160;protected]</span></a></p>
-                        <p>Support: <a href="/cdn-cgi/l/email-protection#25565055554a575165514c5d4c435c0b464a48"><span class="__cf_email__" data-cfemail="265553565649545266524f5e4f405f0845494b">[email&#160;protected]</span></a></p>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 Tixify. All rights reserved.</p>
-                    <div class="footer-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="/jasmeet.jpg" alt="Jasmeet">
+                        </div>
+                        <h3>Jasmeet</h3>
+                        <p class="member-role">UI/UX Developer</p>
+                        <p class="member-bio">Jasmeet refined the frontend experience, enhancing the user interface and adding new features to make Tixify more intuitive and user-friendly.</p>
+                        <div class="member-social">
+                            <a href="https://github.com/jasmeett09" aria-label="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/jasmeet-kaur-50b74931b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
-    
-      
-    
+        </section>
+
+        <section id="newsletter" class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to our newsletter to get the latest updates on events and features.</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" id="newsletterEmail" placeholder="Your email address" required>
+                        <button type="submit" class="primary-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="closeCart" class="close-btn" aria-label="Close cart">×</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <p id="emptyCartMessage" class="empty-cart-message">Your cart is empty.</p>
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">0.00 ETH</span>
+            </div>
+            <button id="checkoutBtn" class="primary-btn full-width" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>Tixify Assistant</h3>
+            <button id="closeChatbot" class="close-btn" aria-label="Close chatbot">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                <p>Hello! I'm your Tixify assistant. How can I help you today?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button id="sendMessage" aria-label="Send message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <button id="openChatbot" class="open-chatbot" aria-label="Open chat assistant">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Login to Tixify</h2>
+            <div class="login-options">
+                <button id="googleLogin" class="social-login-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+                    </svg>
+                    Login with Google
+                </button>
+                <div class="or-divider">
+                    <span>or</span>
+                </div>
+                <form id="emailLoginForm">
+                    <div class="form-group">
+                        <label for="emailInput">Email</label>
+                        <input type="email" id="emailInput" placeholder="Your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput">Password</label>
+                        <input type="password" id="passwordInput" placeholder="Your password" required>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="primary-btn full-width">Login</button>
+                </form>
+                <p class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="transferModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Transfer Ticket</h2>
+            <form id="transferForm">
+                <div class="form-group">
+                    <label for="ticketSelect">Select Ticket</label>
+                    <select id="ticketSelect" required>
+                        <option value="">Choose a ticket</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="recipientAddress">Recipient Wallet Address</label>
+                    <input type="text" id="recipientAddress" placeholder="0x..." required>
+                </div>
+                <div class="form-group">
+                    <label for="transferMessage">Message (Optional)</label>
+                    <textarea id="transferMessage" placeholder="Add a personal message..."></textarea>
+                </div>
+                <button type="submit" class="primary-btn full-width">Transfer Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="sellTicketModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Sell Your Ticket</h2>
+            <form id="sellTicketForm">
+                <div class="form-group">
+                    <label for="sellTicketSelect">Select Ticket</label>
+                    <select id="sellTicketSelect" required>
+                        <option value="">Choose a ticket</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticketPrice">Price (ETH)</label>
+                    <input type="number" id="ticketPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketDescription">Description (Optional)</label>
+                    <textarea id="ticketDescription" placeholder="Add details about your ticket..."></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="termsAgree" required>
+                    <label for="termsAgree">I agree to the <a href="#">terms and conditions</a> for selling tickets</label>
+                </div>
+                <button type="submit" class="primary-btn full-width">List Ticket for Sale</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="createListingModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Create New Listing</h2>
+            <form id="createListingForm">
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" placeholder="Enter event name" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventTime">Event Time</label>
+                    <input type="time" id="eventTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventLocation">Event Location</label>
+                    <input type="text" id="eventLocation" placeholder="Enter venue and city" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketCategory">Ticket Category</label>
+                    <select id="ticketCategory" required>
+                        <option value="">Select category</option>
+                        <option value="concert">Concert</option>
+                        <option value="conference">Conference</option>
+                        <option value="sports">Sports</option>
+                        <option value="festival">Festival</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="listingPrice">Price (ETH)</label>
+                    <input type="number" id="listingPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketProof">Ticket Proof (Image)</label>
+                    <input type="file" id="ticketProof" accept="image/*" required>
+                    <p class="form-hint">Upload an image of your ticket for verification</p>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="listingTermsAgree" required>
+                    <label for="listingTermsAgree">I confirm this is a valid ticket and agree to the <a href="#">terms and conditions</a></label>
+                </div>
+                <button type="submit" class="primary-btn full-width">Create Listing</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2>Complete Your Purchase</h2>
+<div class="ticket-type-selector">
+    <h3>Select Ticket Type</h3>
+    <div class="ticket-types">
+        <div class="ticket-type-option selected" data-type="standard" data-price-multiplier="1">
+            <h4>Standard</h4>
+            <p class="price">Base Price</p>
+            <p class="description">Regular admission with standard seating</p>
+        </div>
+        <div class="ticket-type-option" data-type="vip" data-price-multiplier="1.5">
+            <h4>VIP</h4>
+            <p class="price">+50%</p>
+            <p class="description">Premium seating with exclusive perks</p>
+        </div>
+        <div class="ticket-type-option" data-type="student" data-price-multiplier="0.7">
+            <h4>Student</h4>
+            <p class="price">-30%</p>
+            <p class="description">Discounted tickets with valid student ID</p>
+        </div>
+    </div>
+</div>
+            <div id="checkoutSummary" class="checkout-summary">
+                <h3>Order Summary</h3>
+                <div id="checkoutItems" class="checkout-items">
+                    <!-- Checkout items will be added here dynamically -->
+                </div>
+                <div class="checkout-total">
+                    <div class="subtotal">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">0.00 ETH</span>
+                    </div>
+                    <div class="fees">
+                        <span>Service Fee:</span>
+                        <span id="checkoutFee">0.00 ETH</span>
+                    </div>
+                    <div class="total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">0.00 ETH</span>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-actions">
+                <button id="confirmPurchaseBtn" class="primary-btn full-width">Confirm Purchase</button>
+                <button id="cancelCheckoutBtn" class="secondary-btn full-width">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+<div id="groupDiscountModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" aria-label="Close modal">&times;</button>
+        <h2>Group Discount</h2>
+        <p>Purchase multiple tickets together and save!</p>
+        
+        <div class="quantity-selector">
+            <label for="ticketQuantity">Number of Tickets:</label>
+            <div class="quantity-controls">
+                <button class="quantity-btn decrease-btn">-</button>
+                <input type="number" id="ticketQuantity" class="quantity-input" value="1" min="1" max="20">
+                <button class="quantity-btn increase-btn">+</button>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="groupEventSelect">Select Event:</label>
+            <select id="groupEventSelect" required>
+                <option value="">Choose an event</option>
+                <!-- Events will be populated dynamically -->
+            </select>
+        </div>
+        
+        <div class="discount-summary">
+            <div class="discount-row">
+                <span class="discount-label">Base Price:</span>
+                <span id="basePrice" class="discount-value">0.00 ETH</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Quantity:</span>
+                <span id="quantityValue" class="discount-value">1</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Discount Rate:</span>
+                <span id="discountRate" class="discount-value">0%</span>
+            </div>
+            <div class="discount-row">
+                <span class="discount-label">Savings:</span>
+                <span id="savingsValue" class="discount-value savings">0.00 ETH</span>
+            </div>
+            <div class="discount-row total">
+                <span class="discount-label">Total Price:</span>
+                <span id="totalGroupPrice" class="discount-value">0.00 ETH</span>
+            </div>
+        </div>
+        
+        <button id="addGroupToCartBtn" class="primary-btn full-width">Add to Cart</button>
+    </div>
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tixify</h3>
+                    <p>Your Decentralized Ticketing Solution</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Discord">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 9a5 5 0 0 0-5-5H5a5 5 0 0 0-5 5v6a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V9z"></path>
+                                <path d="M12 12v.01"></path>
+                                <path d="M8 12v.01"></path>
+                                <path d="M16 12v.01"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#tickets">My Tickets</a></li>
+                        <li><a href="#sell">Sell Tickets</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection#9df4f3fbf2dde9f4e5f4fbe4b3fef2f0"><span class="__cf_email__" data-cfemail="6f060109002f1b0617060916410c0002">[email&#160;protected]</span></a></p>
+                    <p>Support: <a href="/cdn-cgi/l/email-protection#25565055554a575165514c5d4c435c0b464a48"><span class="__cf_email__" data-cfemail="265553565649545266524f5e4f405f0845494b">[email&#160;protected]</span></a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tixify. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Scripts -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-    
-    <!-- Add the contracts.js file before app.js -->
-    <script src="contracts.js"></script>
-    
-    <!-- Replace app.js with app-integration.js or keep app.js and add app-integration.js after it -->
     <script src="app.js"></script>
-    <script src="app-integration.js"></script>
 </body>
 </html>
