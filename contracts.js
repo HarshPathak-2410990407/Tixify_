@@ -386,6 +386,7 @@ async function getUserTickets() {
         console.error("Error fetching user tickets:", error);
         return [];
     }
+    
 }
 // Export functions for use in app.js
 window.contractsAPI = {
