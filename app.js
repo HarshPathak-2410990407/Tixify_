@@ -1,13 +1,25 @@
 // Firebase Configuration
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyD7W_sGElhADcTmdXQBaH0Fd50u6mb43FA",
-    authDomain: "tixify-fa41a.firebaseapp.com",
-    projectId: "tixify-fa41a",
-    storageBucket: "tixify-fa41a.firebasestorage.app",
-    messagingSenderId: "737457511810",
-    appId: "1:737457511810:web:116643f18851b67cb7c39b",
-    measurementId: "G-FYD3K14VG4"
-  };
+  apiKey: "AIzaSyA4ZKo31L_s368BX5R9xGX_i8gq9TT6IMI",
+  authDomain: "tixify-ca972.firebaseapp.com",
+  projectId: "tixify-ca972",
+  storageBucket: "tixify-ca972.firebasestorage.app",
+  messagingSenderId: "600132829626",
+  appId: "1:600132829626:web:006a8fa2ef5b461cde9d83",
+  measurementId: "G-1G70N5WBDR"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
   
   // Initialize Firebase
   const firebase = window.firebase; // Declare firebase
