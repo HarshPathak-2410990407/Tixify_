@@ -199,3 +199,54 @@ async function purchaseTickets(typeId, quantity, value) {
                 from: accounts[0],
                 value: web3.utils.toWei(value.toString(), 'ether')
             });
+  groupDiscountsContract = new web3.eth.Contract(
+                GROUP_DISCOUNTS_ABI,
+                CONTRACT_ADDRESSES.groupDiscounts
+            );
+            
+            console.log("Smart contracts initialized successfully");
+            return true;
+        } catch (error) {
+            console.error("User denied account access or error occurred:", error);
+            return false;
+        }
+    } else {
+        console.error("Ethereum provider not detected. Please install MetaMask.");
+        return false;
+    }
+}
+
+// Get available ticket types from the blockchain
+async function getTicketTypes() {
+    try {
+        // This is a placeholder. You'll need to implement the actual method
+        // based on your contract's structure
+        const count = await ticketTypesContract.methods.getTicketTypeCount().call();
+        const types = [];
+        
+        for (let i = 0; i < count; i++) {
+            const typeInfo = await ticketTypesContract.methods.getTicketType(i).call();
+            types.push({
+                id: i,
+                name: typeInfo.eventName,
+                price: web3.utils.fromWei(typeInfo.price, 'ether'),
+                supply: typeInfo.supply
+            });
+        }
+        
+        return types;
+    } catch (error) {
+        console.error("Error fetching ticket types:", error);
+        return [];
+    }
+}
+
+// Purchase tickets
+async function purchaseTickets(typeId, quantity, value) {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const result = await ticketMarketplaceContract.methods.purchaseTickets(typeId, quantity)
+            .send({
+                from: accounts[0],
+                value: web3.utils.toWei(value.toString(), 'ether')
+            });
