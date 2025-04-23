@@ -387,7 +387,6 @@ async function getUserTickets() {
         return [];
     }
 }
-
 // Export functions for use in app.js
 window.contractsAPI = {
     initContracts,
@@ -400,6 +399,5 @@ window.contractsAPI = {
     useTicket,
     calculateGroupDiscount,
     purchaseGroupTickets,
-    getUserTickets
-    
+    getUserTickets   
 };
