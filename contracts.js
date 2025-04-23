@@ -47,7 +47,7 @@ const TICKET_MARKETPLACE_ABI = [
         "type": "function"
     },
     {
-"inputs": [
+        "inputs": [
             {"internalType": "uint256", "name": "ticketId", "type": "uint256"},
             {"internalType": "address", "name": "to", "type": "address"}
         ],
@@ -94,7 +94,7 @@ const ACCESS_ABI = [
 ];
 
 const GROUP_DISCOUNTS_ABI = [
-     // Example ABI for GroupDiscounts contract
+    // Example ABI for GroupDiscounts contract
     {
         "inputs": [
             {"internalType": "uint256", "name": "typeId", "type": "uint256"},
@@ -148,7 +148,8 @@ async function initContracts() {
                 ACCESS_ABI,
                 CONTRACT_ADDRESSES.access
             );
-              groupDiscountsContract = new web3.eth.Contract(
+            
+            groupDiscountsContract = new web3.eth.Contract(
                 GROUP_DISCOUNTS_ABI,
                 CONTRACT_ADDRESSES.groupDiscounts
             );
@@ -199,58 +200,55 @@ async function purchaseTickets(typeId, quantity, value) {
                 from: accounts[0],
                 value: web3.utils.toWei(value.toString(), 'ether')
             });
-  groupDiscountsContract = new web3.eth.Contract(
-                GROUP_DISCOUNTS_ABI,
-                CONTRACT_ADDRESSES.groupDiscounts
-            );
-            
-            console.log("Smart contracts initialized successfully");
-            return true;
-        } catch (error) {
-            console.error("User denied account access or error occurred:", error);
-            return false;
-        }
-    } else {
-        console.error("Ethereum provider not detected. Please install MetaMask.");
-        return false;
-    }
-}
-
-// Get available ticket types from the blockchain
-async function getTicketTypes() {
-    try {
-        // This is a placeholder. You'll need to implement the actual method
-        // based on your contract's structure
-        const count = await ticketTypesContract.methods.getTicketTypeCount().call();
-        const types = [];
         
-        for (let i = 0; i < count; i++) {
-            const typeInfo = await ticketTypesContract.methods.getTicketType(i).call();
-            types.push({
-                id: i,
-                name: typeInfo.eventName,
-                price: web3.utils.fromWei(typeInfo.price, 'ether'),
-                supply: typeInfo.supply
-            });
-        }
-        
-        return types;
+        return {
+            success: true,
+            ticketIds: result.events.TicketsPurchased.returnValues.ticketIds,
+            transactionHash: result.transactionHash
+        };
     } catch (error) {
-        console.error("Error fetching ticket types:", error);
-        return [];
+        console.error("Error purchasing tickets:", error);
+        return {
+            success: false,
+            error: error.message
+        };
     }
 }
 
-// Purchase tickets
-async function purchaseTickets(typeId, quantity, value) {
+// Transfer a ticket to another address
+async function transferTicket(ticketId, toAddress) {
     try {
         const accounts = await web3.eth.getAccounts();
-        const result = await ticketMarketplaceContract.methods.purchaseTickets(typeId, quantity)
-            .send({
-                from: accounts[0],
-                value: web3.utils.toWei(value.toString(), 'ether')
-            });
-  } catch (error) {
+        const result = await ticketMarketplaceContract.methods.transferTicket(ticketId, toAddress)
+            .send({ from: accounts[0] });
+        
+        return {
+            success: true,
+            transactionHash: result.transactionHash
+        };
+    } catch (error) {
+        console.error("Error transferring ticket:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// List a ticket for sale
+async function listTicketForSale(ticketId, price) {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const priceInWei = web3.utils.toWei(price.toString(), 'ether');
+        
+        const result = await ticketMarketplaceContract.methods.listTicketForSale(ticketId, priceInWei)
+            .send({ from: accounts[0] });
+        
+        return {
+            success: true,
+            transactionHash: result.transactionHash
+        };
+    } catch (error) {
         console.error("Error listing ticket for sale:", error);
         return {
             success: false,
