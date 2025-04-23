@@ -47,3 +47,50 @@ const TICKET_MARKETPLACE_ABI = [
         "type": "function"
     },
     {
+"inputs": [
+            {"internalType": "uint256", "name": "ticketId", "type": "uint256"},
+            {"internalType": "address", "name": "to", "type": "address"}
+        ],
+        "name": "transferTicket",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {"internalType": "uint256", "name": "ticketId", "type": "uint256"},
+            {"internalType": "uint256", "name": "price", "type": "uint256"}
+        ],
+        "name": "listTicketForSale",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{"internalType": "uint256", "name": "ticketId", "type": "uint256"}],
+        "name": "buyTicket",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    }
+];
+
+const ACCESS_ABI = [
+    // Example ABI for Access contract
+    {
+        "inputs": [{"internalType": "uint256", "name": "ticketId", "type": "uint256"}],
+        "name": "validateTicket",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{"internalType": "uint256", "name": "ticketId", "type": "uint256"}],
+        "name": "useTicket",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+];
+
+const GROUP_DISCOUNTS_ABI = [
