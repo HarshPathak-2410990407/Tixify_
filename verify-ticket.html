@@ -305,3 +305,57 @@
                     alert('Please install MetaMask to use this feature.');
                 }
             });
+ // Verify ticket button
+            const verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.addEventListener('click', async () => {
+                const ticketId = document.getElementById('ticketId').value.trim();
+                
+                if (!ticketId) {
+                    alert('Please enter a ticket ID.');
+                    return;
+                }
+                
+                try {
+                    // Show loading state
+                    verifyBtn.innerHTML = 'Verifying...';
+                    verifyBtn.disabled = true;
+                    
+                    // Verify ticket on blockchain
+                    if (window.contractsAPI) {
+                        const result = await window.contractsAPI.validateTicket(ticketId);
+                        
+                        if (result.success) {
+                            displayVerificationResult(result.isValid, ticketId);
+                            
+                            if (result.isValid) {
+                                // Get ticket details
+                                // This would be implemented in your contract
+                                const ticketDetails = {
+                                    id: ticketId,
+                                    eventName: "Sample Event",
+                                    date: "October 25, 2025",
+                                    time: "8:00 PM",
+                                    location: "Crypto Arena, New York",
+                                    owner: "0x1234...5678"
+                                };
+                                
+                                displayTicketDetails(ticketDetails);
+                            }
+                        } else {
+                            throw new Error(result.error || "Verification failed");
+                        }
+                    } else {
+                        // Simulate verification for demo
+                        setTimeout(() => {
+                            const isValid = Math.random() > 0.3; // 70% chance of being valid
+                            displayVerificationResult(isValid, ticketId);
+                            
+                            if (isValid) {
+                                const ticketDetails = {
+                                    id: ticketId,
+                                    eventName: "Sample Event",
+                                    date: "October 25, 2025",
+                                    time: "8:00 PM",
+                                    location: "Crypto Arena, New York",
+                                    owner: "0x1234...5678"
+                                };
