@@ -349,7 +349,7 @@ async function purchaseGroupTickets(typeId, quantity, value) {
             ticketIds: result.events.GroupTicketsPurchased.returnValues.ticketIds,
             transactionHash: result.transactionHash
         };
-  } catch (error) {
+    } catch (error) {
         console.error("Error purchasing group tickets:", error);
         return {
             success: false,
