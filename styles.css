@@ -98,6 +98,7 @@ header {
     z-index: 100;
    
 }
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -299,6 +300,7 @@ nav ul li a:hover::after {
     border-radius: 3px;
     transition: var(--transition);
 }
+
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/grad.jpg') no-repeat center center/cover;    
@@ -397,6 +399,7 @@ nav ul li a:hover::after {
     gap: 40px;
     margin-top: 20px;
 }
+
 .stat-item {
     display: flex;
     flex-direction: column;
