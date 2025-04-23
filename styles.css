@@ -2421,3 +2421,104 @@ dark .event-card,
     cursor: pointer;
     transition: var(--transition);
 }
+.lottery-btn:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-2px);
+}
+
+.lottery-entries {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 15px;
+}
+
+.dark .lottery-section {
+    background-color: #252525;
+}
+
+.dark .prize-item {
+    background-color: #333;
+}
+
+/* Group Discount Modal Styles */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-selector label {
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--background);
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-input {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
+
+.discount-summary {
+    background-color: var(--background);
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 20px;
+}
+
+.discount-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.discount-row.total {
+    font-weight: 600;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.discount-label {
+    color: var(--text-muted);
+}
+
+.discount-value {
+    font-weight: 500;
+}
+
+.discount-value.savings {
+    color: var(--success);
+}
+
+.dark .quantity-controls {
+    border-color: #444;
+}
+
+.dark .quantity-btn {
+    background-color: #333;
+    color: var(--text-light);
+}
