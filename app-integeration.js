@@ -1,6 +1,66 @@
+// This file extends the existing app.js with blockchain integration
 
+// Wait for both the DOM and Web3 to be ready
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize the original app
+    initApp();
+    logPageView();
+    
+    // Initialize blockchain contracts
+    const contractsInitialized = await window.contractsAPI.initContracts();
+    if (contractsInitialized) {
+        console.log("Blockchain contracts initialized successfully");
+        // Load blockchain data
+        loadBlockchainData();
+    } else {
+        console.warn("Blockchain contracts initialization failed");
+    }
+});
+
+// Load data from blockchain
+async function loadBlockchainData() {
+    try {
+        // Load user's tickets from blockchain
+        const blockchainTickets = await window.contractsAPI.getUserTickets();
+        if (blockchainTickets.length > 0) {
+            // Clear existing tickets
+            userTickets = [];
+            
+            // Add blockchain tickets to the UI
+            blockchainTickets.forEach(ticket => {
+                userTickets.push(ticket);
+                addTicketToMyTickets(ticket);
+            });
+            
+            // Update ticket buttons state
+            updateTicketButtonsState();
+            
+            // Update lottery entries
+            updateLotteryEntries();
+            
+            // Hide "No tickets purchased yet" message if there are tickets
+            document.getElementById('noTicketsMessage').style.display = 'none';
+        }
+        
+        // Load ticket types from blockchain
+        const ticketTypes = await window.contractsAPI.getTicketTypes();
+        if (ticketTypes.length > 0) {
+            // Update events with blockchain data
+            events = ticketTypes.map((type, index) => ({
+                id: type.id,
+                title: type.name,
+                date: "Coming Soon", // These would come from your contract
+                time: "TBA",
+                price: type.price,
                 location: "Blockchain Venue",
-          
+                image: `/placeholder.svg?height=200&width=300&text=${encodeURIComponent(type.name)}`,
+                category: "blockchain",
+                description: `Blockchain verified event with ${type.supply} available tickets.`,
+                remaining: type.supply
+            }));
+            
+            // Render updated events
+            renderEvents();
         }
     } catch (error) {
         console.error("Error loading blockchain data:", error);
@@ -31,7 +91,8 @@ handleCheckout = async function() {
         hideModal(checkoutModal);
         return;
     }
-try {
+    
+    try {
         // Show loading state
         confirmPurchaseBtn.innerHTML = 'Processing...';
         confirmPurchaseBtn.disabled = true;
@@ -143,6 +204,7 @@ function calculateCartTotal() {
     });
     return total.toFixed(2);
 }
+
 // Override handleTicketTransfer to use blockchain
 handleTicketTransfer = async function(e) {
     e.preventDefault();
@@ -246,7 +308,8 @@ handleSellTicket = async function(e) {
         if (!ticket) {
             throw new Error("Ticket not found");
         }
- // Create listing
+        
+        // Create listing
         const listing = {
             id: 'LST-' + Date.now(),
             ticketId: ticketId,
