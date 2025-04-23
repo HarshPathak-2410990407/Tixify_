@@ -1289,3 +1289,241 @@ nav ul li a:hover::after {
     background-color: var(--primary);
     transform: translateY(-3px);
 }
+.ticket-actions button:hover {
+    opacity: 0.9;
+}
+
+/* Team Section */
+.team-section {
+    background-color: var(--card-bg);
+}
+
+.team-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.team-member {
+    background-color: var(--background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.member-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.team-member h3 {
+    margin: 20px 0 5px;
+    font-size: 22px;
+    color: var(--primary);
+}
+
+.member-role {
+    color: var(--secondary-dark);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.member-bio {
+    padding: 0 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.member-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--primary-light);
+    border-radius: 50%;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.member-social a:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--error);
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    padding: 0;
+    margin-left: 10px;
+    transition: var(--transition);
+}
+
+.cart-item-remove:hover {
+    transform: scale(1.1);
+}
+
+.cart-summary {
+    padding: 20px;
+    background-color: var(--background);
+    border-top: 1px solid #eee;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Chatbot Styles */
+.chatbot {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    display: none;
+}
+
+.chatbot-header {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: var(--primary);
+    color: var(--text-light);
+    border-bottom-right-radius: 5px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+    color: var(--text-dark);
+    border-bottom-left-radius: 5px;
+}
+
+.chatbot-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.chatbot-input button {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chatbot-input button:hover {
+    background-color: var(--primary-light);
+}
