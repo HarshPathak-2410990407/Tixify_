@@ -359,3 +359,40 @@
                                     location: "Crypto Arena, New York",
                                     owner: "0x1234...5678"
                                 };
+   displayTicketDetails(ticketDetails);
+                            }
+                        }, 1500);
+                    }
+                } catch (error) {
+                    console.error('Verification failed:', error);
+                    displayVerificationResult(false, ticketId, error.message);
+                } finally {
+                    // Reset button state
+                    verifyBtn.innerHTML = 'Verify Ticket';
+                    verifyBtn.disabled = false;
+                }
+            });
+            
+            // Scan QR code button
+            const scanQrBtn = document.getElementById('scanQrBtn');
+            scanQrBtn.addEventListener('click', () => {
+                alert('QR code scanning would be implemented here using a camera API.');
+                // In a real implementation, this would open the camera and scan a QR code
+            });
+            
+            // Use ticket button
+            const useTicketBtn = document.getElementById('useTicketBtn');
+            useTicketBtn.addEventListener('click', async () => {
+                const ticketId = document.getElementById('ticketId').value.trim();
+                
+                if (!ticketId) {
+                    alert('No ticket selected.');
+                    return;
+                }
+                
+                try {
+                    // Show loading state
+                    useTicketBtn.innerHTML = 'Processing...';
+                    useTicketBtn.disabled = true;
+                    
+                    // Mark ticket as used on blockchain
