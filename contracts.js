@@ -94,3 +94,57 @@ const ACCESS_ABI = [
 ];
 
 const GROUP_DISCOUNTS_ABI = [
+     // Example ABI for GroupDiscounts contract
+    {
+        "inputs": [
+            {"internalType": "uint256", "name": "typeId", "type": "uint256"},
+            {"internalType": "uint256", "name": "quantity", "type": "uint256"}
+        ],
+        "name": "calculateGroupDiscount",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {"internalType": "uint256", "name": "typeId", "type": "uint256"},
+            {"internalType": "uint256", "name": "quantity", "type": "uint256"}
+        ],
+        "name": "purchaseGroupTickets",
+        "outputs": [{"internalType": "uint256[]", "name": "", "type": "uint256[]"}],
+        "stateMutability": "payable",
+        "type": "function"
+    }
+];
+
+// Contract instances
+let ticketTypesContract;
+let ticketMarketplaceContract;
+let accessContract;
+let groupDiscountsContract;
+
+// Initialize Web3 and contracts
+async function initContracts() {
+    if (window.ethereum) {
+        try {
+            // Request account access
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            
+            // Initialize Web3
+            window.web3 = new Web3(window.ethereum);
+            
+            // Initialize contract instances
+            ticketTypesContract = new web3.eth.Contract(
+                TICKET_TYPES_ABI,
+                CONTRACT_ADDRESSES.ticketTypes
+            );
+            
+            ticketMarketplaceContract = new web3.eth.Contract(
+                TICKET_MARKETPLACE_ABI,
+                CONTRACT_ADDRESSES.ticketMarketplace
+            );
+            
+            accessContract = new web3.eth.Contract(
+                ACCESS_ABI,
+                CONTRACT_ADDRESSES.access
+            );
