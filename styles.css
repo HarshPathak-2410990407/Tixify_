@@ -299,3 +299,101 @@ nav ul li a:hover::after {
     border-radius: 3px;
     transition: var(--transition);
 }
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/grad.jpg') no-repeat center center/cover;    
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    position: relative;
+    padding: 80px 20px;
+    
+}
+
+.hero-content {
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+.hero-content h2 {
+    font-size: 42px;
+    margin: 0 0 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.purple-text {
+    color: #e0aaff;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin: 0 0 30px;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    padding: 12px 25px;
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.primary-btn:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.secondary-btn {
+    padding: 12px 25px;
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.secondary-btn:hover {
+    background-color: rgba(255, 204, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.wallet-status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
