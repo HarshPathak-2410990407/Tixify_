@@ -798,3 +798,53 @@ e<!DOCTYPE html>
                         <input type="number" id="listingPrice" step="0.01" min="0.01" placeholder="0.00" required>
                     </div>
                     <div class="form-group">
+                 <label for="ticketProof">Ticket Proof (Image)</label>
+                        <input type="file" id="ticketProof" accept="image/*" required>
+                        <p class="form-hint">Upload an image of your ticket for verification</p>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="listingTermsAgree" required>
+                        <label for="listingTermsAgree">I confirm this is a valid ticket and agree to the <a href="#">terms and conditions</a></label>
+                    </div>
+                    <button type="submit" class="primary-btn full-width">Create Listing</button>
+                </form>
+            </div>
+        </div>
+    
+        <div id="checkoutModal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal" aria-label="Close modal">&times;</button>
+                <h2>Complete Your Purchase</h2>
+    <div class="ticket-type-selector">
+        <h3>Select Ticket Type</h3>
+        <div class="ticket-types">
+            <div class="ticket-type-option selected" data-type="standard" data-price-multiplier="1">
+                <h4>Standard</h4>
+                <p class="price">Base Price</p>
+                <p class="description">Regular admission with standard seating</p>
+            </div>
+            <div class="ticket-type-option" data-type="vip" data-price-multiplier="1.5">
+                <h4>VIP</h4>
+                <p class="price">+50%</p>
+                <p class="description">Premium seating with exclusive perks</p>
+            </div>
+            <div class="ticket-type-option" data-type="student" data-price-multiplier="0.7">
+                <h4>Student</h4>
+                <p class="price">-30%</p>
+                <p class="description">Discounted tickets with valid student ID</p>
+            </div>
+        </div>
+    </div>
+                <div id="checkoutSummary" class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutItems" class="checkout-items">
+                        <!-- Checkout items will be added here dynamically -->
+                    </div>
+                    <div class="checkout-total">
+                        <div class="subtotal">
+                            <span>Subtotal:</span>
+                            <span id="checkoutSubtotal">0.00 ETH</span>
+                        </div>
+                        <div class="fees">
+                            <span>Service Fee:</span>
+                            <span id="checkoutFee">0.00 ETH</span>
