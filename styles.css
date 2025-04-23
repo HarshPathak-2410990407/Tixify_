@@ -197,3 +197,105 @@ nav ul li a:hover::after {
     align-items: center;
     justify-content: center;
 }
+
+.login-btn {
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--secondary);
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.login-btn:hover {
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--secondary);
+}
+
+.user-profile span {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow);
+    width: 180px;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: none;
+    z-index: 10;
+}
+
+.user-menu.active {
+    display: block;
+}
+
+.user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu ul li {
+    margin: 0;
+}
+
+.user-menu ul li a,
+.user-menu ul li button {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+}
+
+.user-menu ul li a:hover,
+.user-menu ul li button:hover {
+    background-color: var(--card-hover);
+    color: var(--primary);
+}
+
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.mobile-menu-btn span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-light);
+    border-radius: 3px;
+    transition: var(--transition);
+}
