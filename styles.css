@@ -1891,3 +1891,161 @@ footer {
     opacity: 0.7;
     transition: var(--transition);
 }
+.footer-links a:hover {
+    color: var(--secondary);
+    opacity: 1;
+}
+
+/* Dark Mode */
+.dark {
+    --primary: #9c27b0;
+    --primary-light: #ba68c8;
+    --primary-dark: #7b1fa2;
+    --text-light: #ffffff;
+    --text-dark: #f5f5f5;
+    --text-muted: #b0b0b0;
+    --background: #121212;
+    --card-bg: #1e1e1e;
+    --card-hover: #2d2d2d;
+}
+
+.dark .moon-icon {
+    display: none;
+}
+
+.light .sun-icon {
+    display: none;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero-content h2 {
+        font-size: 36px;
+    }
+    
+    .hero-stats {
+        gap: 30px;
+    }
+    
+    .featured-content {
+        flex-direction: column;
+    }
+    
+    .featured-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+    
+    nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--primary);
+        padding: 80px 20px 20px;
+        z-index: 100;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    nav ul li a {
+        font-size: 18px;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .hero-content h2 {
+        font-size: 32px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .hero-stats {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .events, .tickets, .about, .featured-event, .newsletter, .sell-section, .team-section {
+        padding: 60px 0;
+    }
+    
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-container {
+        max-width: none;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+    }
+    
+    .ticket-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .chatbot {
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+    }
+    
+    .cart-sidebar {
+        max-width: 100%;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
