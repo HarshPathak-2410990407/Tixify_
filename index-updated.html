@@ -698,3 +698,53 @@ e<!DOCTYPE html>
                             <input type="email" id="emailInput" placeholder="Your email" required>
                         </div>
                         <div class="form-group">
+                     <label for="passwordInput">Password</label>
+                            <input type="password" id="passwordInput" placeholder="Your password" required>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="primary-btn full-width">Login</button>
+                    </form>
+                    <p class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    
+        <div id="transferModal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal" aria-label="Close modal">&times;</button>
+                <h2>Transfer Ticket</h2>
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label for="ticketSelect">Select Ticket</label>
+                        <select id="ticketSelect" required>
+                            <option value="">Choose a ticket</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipientAddress">Recipient Wallet Address</label>
+                        <input type="text" id="recipientAddress" placeholder="0x..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transferMessage">Message (Optional)</label>
+                        <textarea id="transferMessage" placeholder="Add a personal message..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn full-width">Transfer Ticket</button>
+                </form>
+            </div>
+        </div>
+    
+        <div id="sellTicketModal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal" aria-label="Close modal">&times;</button>
+                <h2>Sell Your Ticket</h2>
+                <form id="sellTicketForm">
+                    <div class="form-group">
+                        <label for="sellTicketSelect">Select Ticket</label>
+                        <select id="sellTicketSelect" required>
+                            <option value="">Choose a ticket</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketPrice">Price (ETH)</label>
+                        <input type="number" id="ticketPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
