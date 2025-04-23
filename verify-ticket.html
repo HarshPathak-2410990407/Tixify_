@@ -396,3 +396,64 @@
                     useTicketBtn.disabled = true;
                     
                     // Mark ticket as used on blockchain
+ if (window.contractsAPI) {
+                        const result = await window.contractsAPI.useTicket(ticketId);
+                        
+                        if (result.success) {
+                            alert('Ticket has been marked as used successfully!');
+                            useTicketBtn.style.display = 'none';
+                        } else {
+                            throw new Error(result.error || "Failed to mark ticket as used");
+                        }
+                    } else {
+                        // Simulate for demo
+                        setTimeout(() => {
+                            alert('Ticket has been marked as used successfully!');
+                            useTicketBtn.style.display = 'none';
+                        }, 1500);
+                    }
+                } catch (error) {
+                    console.error('Failed to mark ticket as used:', error);
+                    alert('Failed to mark ticket as used: ' + error.message);
+                } finally {
+                    // Reset button state
+                    useTicketBtn.innerHTML = 'Mark as Used';
+                    useTicketBtn.disabled = false;
+                }
+            });
+            
+            // Helper functions
+            function displayVerificationResult(isValid, ticketId, errorMessage = null) {
+                const verifyResult = document.getElementById('verifyResult');
+                const verifyStatus = document.getElementById('verifyStatus');
+                const verifyMessage = document.getElementById('verifyMessage');
+                const ticketDetails = document.getElementById('ticketDetails');
+                const useTicketBtn = document.getElementById('useTicketBtn');
+                
+                verifyResult.style.display = 'block';
+                verifyResult.className = 'verify-result ' + (isValid ? 'valid' : 'invalid');
+                
+                verifyStatus.textContent = isValid ? 'Ticket Valid' : 'Ticket Invalid';
+                
+                if (isValid) {
+                    verifyMessage.textContent = `The ticket ${ticketId} is valid and can be used for entry.`;
+                    ticketDetails.style.display = 'block';
+                    useTicketBtn.style.display = 'block';
+                } else {
+                    verifyMessage.textContent = errorMessage || `The ticket ${ticketId} is invalid or has already been used.`;
+                    ticketDetails.style.display = 'none';
+                    useTicketBtn.style.display = 'none';
+                }
+            }
+            
+            function displayTicketDetails(ticket) {
+                document.getElementById('ticketIdDisplay').textContent = ticket.id;
+                document.getElementById('eventNameDisplay').textContent = ticket.eventName;
+                document.getElementById('dateTimeDisplay').textContent = `${ticket.date} at ${ticket.time}`;
+                document.getElementById('locationDisplay').textContent = ticket.location;
+                document.getElementById('ownerDisplay').textContent = ticket.owner;
+            }
+        });
+    </script>
+</body>
+</html>
