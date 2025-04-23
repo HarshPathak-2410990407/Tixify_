@@ -305,7 +305,8 @@
                     alert('Please install MetaMask to use this feature.');
                 }
             });
- // Verify ticket button
+            
+            // Verify ticket button
             const verifyBtn = document.getElementById('verifyBtn');
             verifyBtn.addEventListener('click', async () => {
                 const ticketId = document.getElementById('ticketId').value.trim();
@@ -359,7 +360,8 @@
                                     location: "Crypto Arena, New York",
                                     owner: "0x1234...5678"
                                 };
-   displayTicketDetails(ticketDetails);
+                                
+                                displayTicketDetails(ticketDetails);
                             }
                         }, 1500);
                     }
@@ -396,7 +398,7 @@
                     useTicketBtn.disabled = true;
                     
                     // Mark ticket as used on blockchain
- if (window.contractsAPI) {
+                    if (window.contractsAPI) {
                         const result = await window.contractsAPI.useTicket(ticketId);
                         
                         if (result.success) {
