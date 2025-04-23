@@ -401,4 +401,5 @@ window.contractsAPI = {
     calculateGroupDiscount,
     purchaseGroupTickets,
     getUserTickets
+    
 };
