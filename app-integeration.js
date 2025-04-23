@@ -1,13 +1,6 @@
 
                 location: "Blockchain Venue",
-                image: `/placeholder.svg?height=200&width=300&text=${encodeURIComponent(type.name)}`,
-                category: "blockchain",
-                description: `Blockchain verified event with ${type.supply} available tickets.`,
-                remaining: type.supply
-            }));
-            
-            // Render updated events
-            renderEvents();
+          
         }
     } catch (error) {
         console.error("Error loading blockchain data:", error);
