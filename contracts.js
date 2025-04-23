@@ -296,3 +296,56 @@ async function validateTicket(ticketId) {
         };
     }
 }
+
+// Use a ticket (mark as used)
+async function useTicket(ticketId) {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const result = await accessContract.methods.useTicket(ticketId)
+            .send({ from: accounts[0] });
+        
+        return {
+            success: true,
+            transactionHash: result.transactionHash
+        };
+    } catch (error) {
+        console.error("Error using ticket:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// Calculate group discount
+async function calculateGroupDiscount(typeId, quantity) {
+    try {
+        const discount = await groupDiscountsContract.methods.calculateGroupDiscount(typeId, quantity).call();
+        return {
+            success: true,
+            discount: web3.utils.fromWei(discount, 'ether')
+        };
+    } catch (error) {
+        console.error("Error calculating group discount:", error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+// Purchase group tickets with discount
+async function purchaseGroupTickets(typeId, quantity, value) {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const result = await groupDiscountsContract.methods.purchaseGroupTickets(typeId, quantity)
+            .send({
+                from: accounts[0],
+                value: web3.utils.toWei(value.toString(), 'ether')
+            });
+        
+        return {
+            success: true,
+            ticketIds: result.events.GroupTicketsPurchased.returnValues.ticketIds,
+            transactionHash: result.transactionHash
+        };
