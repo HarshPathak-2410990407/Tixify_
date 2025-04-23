@@ -702,3 +702,107 @@ nav ul li a:hover::after {
     line-height: 1.6;
     opacity: 0.9;
 }
+.featured-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item svg {
+    color: var(--secondary);
+}
+
+.featured-btn {
+    display: inline-flex;
+}
+
+.featured-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.featured-image img {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+}
+
+/* Sell Section */
+.sell-section {
+    background-color: var(--background);
+    overflow-x: hidden;
+}
+
+.sell-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.sell-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sell-intro p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.scrolling-wrapper {
+    overflow: hidden;
+    display:flex;
+    left:50%;
+    right:50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    position: relative;
+    white-space: nowrap;
+    padding: 20px 0;
+}
+
+.sell-benefits {
+    display: flex;
+    justify-content: space-evenly; /* Ensures even spacing */
+    align-items: center; /* Aligns items evenly */
+    gap: 30px; /* Space between items */
+    margin-top: 30px;
+    width: max-content;
+    flex-wrap: nowrap; /* Ensures responsiveness on smaller screens */
+    white-space: nowrap; /* Prevents wrapping */
+    position: relative;
+    animation: scrollLeft 10s linear infinite;
+}
+
+.sell-benefits:hover {
+    animation-play-state: paused;
+}
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: var(--background);
+    transition: var(--transition);
+    min-width: fit-content;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+   
+}
