@@ -7,12 +7,7 @@
         const ticketTypes = await window.contractsAPI.getTicketTypes();
         if (ticketTypes.length > 0) {
             // Update events with blockchain data
-            events = ticketTypes.map((type, index) => ({
-                id: type.id,
-                title: type.name,
-                date: "Coming Soon", // These would come from your contract
-                time: "TBA",
-                price: type.price,
+            events = ticket
                 location: "Blockchain Venue",
                 image: `/placeholder.svg?height=200&width=300&text=${encodeURIComponent(type.name)}`,
                 category: "blockchain",
