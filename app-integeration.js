@@ -1,15 +1,4 @@
 
-        if (blockchainTickets.length > 0) {
-            // Clear existing tickets
-            userTickets = [];
-            
-            // Add blockchain tickets to the UI
-            blockchainTickets.forEach(ticket => {
-                userTickets.push(ticket);
-                addTicketToMyTickets(ticket);
-            });
-            
- 
             // Hide "No tickets purchased yet" message if there are tickets
             document.getElementById('noTicketsMessage').style.display = 'none';
         }
