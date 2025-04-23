@@ -2112,3 +2112,105 @@ footer {
     background-color: #1a1a1a;
     border-bottom: 1px solid var(--border-color);
 }
+dark .event-card, 
+.dark .ticket-item, 
+.dark .sell-option-card, 
+.dark .benefit-item, 
+.dark .team-member,
+.dark .modal-content,
+.dark .cart-sidebar {
+    background-color: #252525;
+    border: 1px solid #333;
+}
+
+.dark .filter-controls select,
+.dark .search-container input,
+.dark .form-group input,
+.dark .form-group select,
+.dark .form-group textarea,
+.dark .chatbot-input input {
+    background-color: #333;
+    color: var(--text-light);
+    border-color: #444;
+}
+
+.dark .filter-controls select:focus,
+.dark .search-container input:focus,
+.dark .form-group input:focus,
+.dark .form-group select:focus,
+.dark .form-group textarea:focus,
+.dark .chatbot-input input:focus {
+    border-color: var(--primary);
+}
+
+.dark .tab-btn:not(.active) {
+    background-color: #333;
+    color: var(--text-light);
+}
+
+.dark .chatbot {
+    background-color: #252525;
+    border: 1px solid #333;
+}
+
+.dark .message.bot {
+    background-color: #333;
+    color: var(--text-light);
+}
+
+/* Group Discounts Styles */
+.group-discount-banner {
+    background: linear-gradient(135deg,. var(--primary-light), var(--primary-dark));
+    color: var(--text-light);
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.group-discount-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.group-discount-icon {
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.group-discount-text h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.group-discount-text p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.group-discount-btn {
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.group-discount-btn:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-2px);
+}
