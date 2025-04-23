@@ -1,194 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tixify - Ticket Verification">
-    <title>Tixify - Verify Ticket</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .verify-container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .verify-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .verify-form {
-            margin-bottom: 30px;
-        }
-        
-        .verify-result {
-            padding: 20px;
-            border-radius: var(--border-radius-sm);
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .verify-result.valid {
-            background-color: rgba(76, 175, 80, 0.1);
-            border: 1px solid var(--success);
-        }
-        
-        .verify-result.invalid {
-            background-color: rgba(244, 67, 54, 0.1);
-            border: 1px solid var(--error);
-        }
-        
-        .ticket-details {
-            margin-top: 20px;
-        }
-        
-        .ticket-details p {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .scan-button {
-            margin-top: 20px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: var(--border-radius-sm);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .scan-button:hover {
-            background-color: var(--primary-light);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <h1>Tixify</h1>
+ <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tixify</h3>
+                    <p>Your Decentralized Ticketing Solution</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Discord">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 9a5 5 0 0 0-5-5H5a5 5 0 0 0-5 5v6a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V9z"></path>
+                                <path d="M12 12v.01"></path>
+                                <path d="M8 12v.01"></path>
+                                <path d="M16 12v.01"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#events">Events</a></li>
+                        <li><a href="index.html#tickets">My Tickets</a></li>
+                        <li><a href="index.html#sell">Sell Tickets</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="mailto:info@tixify.com">info@tixify.com</a></p>
+                    <p>Support: <a href="mailto:support@tixify.com">support@tixify.com</a></p>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="index.html#events" class="nav-link">Events</a></li>
-                    <li><a href="index.html#tickets" class="nav-link">My Tickets</a></li>
-                    <li><a href="index.html#sell" class="nav-link">Sell Tickets</a></li>
-                    <li><a href="index.html#about" class="nav-link">About</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <button id="darkModeToggle" class="icon-btn" aria-label="Toggle dark mode">
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <button id="connectWallet" class="login-btn">Connect Wallet</button>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tixify. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
             </div>
         </div>
-    </header>
-    
-    <main>
-        <div class="verify-container">
-            <div class="verify-header">
-                <h2>Ticket Verification</h2>
-                <p>Verify the authenticity of a ticket using its ID or scan its QR code</p>
-            </div>
-            
-            <div class="verify-form">
-                <div class="form-group">
-                    <label for="ticketId">Ticket ID</label>
-                    <input type="text" id="ticketId" placeholder="Enter ticket ID (e.g., TIX-123-456)" required>
-                </div>
-                
-                <button type="button" id="verifyBtn" class="primary-btn full-width">Verify Ticket</button>
-                
-                <div class="text-center" style="margin-top: 20px; text-align: center;">
-                    <p>- OR -</p>
-                </div>
-                
-                <button type="button" id="scanQrBtn" class="scan-button full-width">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="8" y2="3"></line>
-                        <line x1="16" y1="21" x2="16" y2="3"></line>
-                        <line x1="3" y1="8" x2="21" y2="8"></line>
-                        <line x1="3" y1="16" x2="21" y2="16"></line>
-                    </svg>
-                    Scan QR Code
-                </button>
-            </div>
-            
-            <div id="verifyResult" class="verify-result">
-                <h3 id="verifyStatus">Verification Result</h3>
-                <p id="verifyMessage"></p>
-                
-                <div id="ticketDetails" class="ticket-details" style="display: none;">
-                    <h4>Ticket Details</h4>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                        <span id="ticketIdDisplay"></span>
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <span id="eventNameDisplay"></span>
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        <span id="dateTimeDisplay"></span>
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        <span id="locationDisplay"></span>
-                    </p>
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                        <span id="ownerDisplay"></span>
-                    </p>
-                </div>
-                
-                <button id="useTicketBtn" class="primary-btn full-width" style="margin-top: 20px; display: none;">Mark as Used</button>
-            </div>
-        </div>
-    </main>
+    </footer>
