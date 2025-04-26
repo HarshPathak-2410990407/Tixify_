@@ -257,8 +257,42 @@
     </footer>
     
     <!-- Scripts -->
+    <!-- First load Web3 -->
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-    <script src="contracts.js"></script>
+    
+    <!-- Then load contracts.js before using it -->
+    <script>
+        // Create a global contractsAPI object if it doesn't exist
+        window.contractsAPI = window.contractsAPI || {};
+        
+        // Initialize the contracts API with placeholder functions
+        window.contractsAPI = {
+            initContracts: async function() {
+                console.log("Initializing contracts...");
+                // In a real implementation, this would initialize your smart contracts
+                return true;
+            },
+            validateTicket: async function(ticketId) {
+                console.log("Validating ticket:", ticketId);
+                // Simulate validation - in a real implementation, this would check the blockchain
+                return {
+                    success: true,
+                    isValid: Math.random() > 0.3, // 70% chance of being valid
+                    error: null
+                };
+            },
+            useTicket: async function(ticketId) {
+                console.log("Marking ticket as used:", ticketId);
+                // Simulate marking as used - in a real implementation, this would update the blockchain
+                return {
+                    success: true,
+                    error: null
+                };
+            }
+        };
+    </script>
+    
+    <!-- Main script for the page -->
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             // Initialize dark mode
