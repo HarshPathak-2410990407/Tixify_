@@ -498,6 +498,7 @@ nav ul li a:hover::after {
     background-color: var(--card-bg);
     transition: var(--transition);
 }
+
 .filter-controls select:focus {
     outline: none;
     border-color: var(--primary-light);
@@ -600,6 +601,7 @@ nav ul li a:hover::after {
     align-items: center;
     gap: 8px;
 }
+
 .event-card .event-location {
     color: var(--text-muted);
     margin-bottom: 15px;
@@ -702,6 +704,7 @@ nav ul li a:hover::after {
     line-height: 1.6;
     opacity: 0.9;
 }
+
 .featured-details {
     display: flex;
     flex-direction: column;
@@ -806,6 +809,9 @@ nav ul li a:hover::after {
     overflow: hidden;
    
 }
+
+
+
 .benefit-item svg {
     color: var(--primary);
     flex-shrink: 0;
@@ -907,6 +913,7 @@ nav ul li a:hover::after {
     background-color: var(--secondary);
     color: var(--primary-dark);
 }
+
 .listing-content {
     padding: 20px;
 }
@@ -1093,202 +1100,7 @@ nav ul li a:hover::after {
     border: 1px solid var(--primary);
     color: var(--primary);
 }
-.ticket-actions button:hover {
-    opacity: 0.9;
-}
 
-/* Team Section */
-.team-section {
-    background-color: var(--card-bg);
-}
-
-.team-intro {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 50px;
-    font-size: 18px;
-    color: var(--text-muted);
-}
-
-.team-members {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    justify-content: center;
-}
-
-.team-member {
-    background-color: var(--background);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: var(--transition);
-    text-align: center;
-    padding-bottom: 25px;
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-}
-
-.member-image {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-}
-
-.member-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.team-member:hover .member-image img {
-    transform: scale(1.05);
-}
-
-.team-member h3 {
-    margin: 20px 0 5px;
-    font-size: 22px;
-    color: var(--primary);
-}
-
-.member-role {
-    color: var(--secondary-dark);
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.member-bio {
-    padding: 0 20px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-muted);
-}
-
-.member-social {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.member-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: var(--primary-light);
-    border-radius: 50%;
-    color: var(--text-light);
-    transition: var(--transition);
-}
-
-.member-social a:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px);
-}
-.ticket-actions button:hover {
-    opacity: 0.9;
-}
-
-/* Team Section */
-.team-section {
-    background-color: var(--card-bg);
-}
-
-.team-intro {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 50px;
-    font-size: 18px;
-    color: var(--text-muted);
-}
-
-.team-members {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    justify-content: center;
-}
-
-.team-member {
-    background-color: var(--background);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: var(--transition);
-    text-align: center;
-    padding-bottom: 25px;
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-}
-
-.member-image {
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-}
-
-.member-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.team-member:hover .member-image img {
-    transform: scale(1.05);
-}
-
-.team-member h3 {
-    margin: 20px 0 5px;
-    font-size: 22px;
-    color: var(--primary);
-}
-
-.member-role {
-    color: var(--secondary-dark);
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.member-bio {
-    padding: 0 20px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-muted);
-}
-
-.member-social {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.member-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: var(--primary-light);
-    border-radius: 50%;
-    color: var(--text-light);
-    transition: var(--transition);
-}
-
-.member-social a:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px);
-}
 .ticket-actions button:hover {
     opacity: 0.9;
 }
@@ -1388,6 +1200,223 @@ nav ul li a:hover::after {
     transform: translateY(-3px);
 }
 
+/* About Section */
+.about {
+    background-color: var(--card-bg);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.about-text h3 {
+    color: var(--primary);
+    margin: 30px 0 15px;
+    font-size: 22px;
+}
+
+.feature-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.feature-list li svg {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    border-radius: var(--border-radius);
+    max-width: 100%;
+}
+
+/* Newsletter Section */
+.newsletter {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/news.jpg') no-repeat center center/cover;    
+    color: var(--text-light);
+}
+
+.newsletter h2 {
+    color: var(--text-light);
+}
+
+.newsletter-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter p {
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 12px 25px;
+    background-color: var(--secondary);
+    color: var(--primary-dark);
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+    background-color: var(--secondary-light);
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--card-bg);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.cart-overlay.active {
+    display: block;
+}
+
+.cart-header {
+    padding: 20px;
+    background-color: var(--primary);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.cart-items {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px 0;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.cart-item-info {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
 
 .cart-item-remove {
     background: none;
@@ -1523,6 +1552,11 @@ nav ul li a:hover::after {
     cursor: pointer;
     transition: var(--transition);
 }
+
+.chatbot-input button:hover {
+    background-color: var(--primary-light);
+}
+
 .open-chatbot {
     position: fixed;
     bottom: 20px;
@@ -1657,9 +1691,6 @@ nav ul li a:hover::after {
     color: var(--text-dark);
 }
 
-.chatbot-input button:hover {
-    background-color: var(--primary-light);
-}
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -1786,6 +1817,7 @@ nav ul li a:hover::after {
     flex-direction: column;
     gap: 10px;
 }
+
 /* Footer Styles */
 footer {
     background-color: #000000;
@@ -1891,6 +1923,7 @@ footer {
     opacity: 0.7;
     transition: var(--transition);
 }
+
 .footer-links a:hover {
     color: var(--secondary);
     opacity: 1;
@@ -2048,6 +2081,7 @@ footer {
     .hero-content h2 {
         font-size: 28px;
     }
+    
     .hero-buttons {
         flex-direction: column;
         width: 100%;
@@ -2112,7 +2146,8 @@ footer {
     background-color: #1a1a1a;
     border-bottom: 1px solid var(--border-color);
 }
-dark .event-card, 
+
+.dark .event-card, 
 .dark .ticket-item, 
 .dark .sell-option-card, 
 .dark .benefit-item, 
@@ -2160,103 +2195,7 @@ dark .event-card,
 
 /* Group Discounts Styles */
 .group-discount-banner {
-    background: linear-gradient(135deg,. var(--primary-light), var(--primary-dark));
-    color: var(--text-light);
-    padding: 15px 20px;
-    border-radius: var(--border-radius);
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.group-discount-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.group-discount-icon {
-    font-size: 24px;
-    background-color: rgba(255, 255, 255, 0.2);
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.group-discount-text h3 {
-    margin: 0 0 5px;
-    font-size: 18px;
-}
-
-.group-discount-text p {
-    margin: 0;
-    font-size: 14px;
-}
-
-.group-discount-btn {
-    background-color: var(--secondary);
-    color: var(--primary-dark);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-}dark .event-card, 
-.dark .ticket-item, 
-.dark .sell-option-card, 
-.dark .benefit-item, 
-.dark .team-member,
-.dark .modal-content,
-.dark .cart-sidebar {
-    background-color: #252525;
-    border: 1px solid #333;
-}
-
-.dark .filter-controls select,
-.dark .search-container input,
-.dark .form-group input,
-.dark .form-group select,
-.dark .form-group textarea,
-.dark .chatbot-input input {
-    background-color: #333;
-    color: var(--text-light);
-    border-color: #444;
-}
-
-.dark .filter-controls select:focus,
-.dark .search-container input:focus,
-.dark .form-group input:focus,
-.dark .form-group select:focus,
-.dark .form-group textarea:focus,
-.dark .chatbot-input input:focus {
-    border-color: var(--primary);
-}
-
-.dark .tab-btn:not(.active) {
-    background-color: #333;
-    color: var(--text-light);
-}
-
-.dark .chatbot {
-    background-color: #252525;
-    border: 1px solid #333;
-}
-
-.dark .message.bot {
-    background-color: #333;
-    color: var(--text-light);
-}
-
-/* Group Discounts Styles */
-.group-discount-banner {
-    background: linear-gradient(135deg,. var(--primary-light), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
     color: var(--text-light);
     padding: 15px 20px;
     border-radius: var(--border-radius);
@@ -2311,10 +2250,104 @@ dark .event-card,
     transform: translateY(-2px);
 }
 
-.group-discount-btn:hover {
-    background-color: var(--secondary-light);
-    transform: translateY(-2px);
+/* Ticket Types Styles */
+.ticket-type-selector {
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
 }
+
+.ticket-type-selector h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 18px;
+}
+
+.ticket-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ticket-type-option {
+    flex: 1;
+    min-width: 120px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.ticket-type-option:hover {
+    border-color: var(--primary-light);
+}
+
+.ticket-type-option.selected {
+    border-color: var(--primary);
+    background-color: rgba(106, 27, 154, 0.1);
+}
+
+.ticket-type-option h4 {
+    margin: 0 0 5px;
+    color: var(--primary);
+}
+
+.ticket-type-option p.price {
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: var(--primary-dark);
+}
+
+.ticket-type-option p.description {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.dark .ticket-type-option {
+    border-color: #444;
+}
+
+.dark .ticket-type-option:hover {
+    border-color: var(--primary-light);
+}
+
+.dark .ticket-type-option.selected {
+    background-color: rgba(156, 39, 176, 0.2);
+}
+
+/* Lottery System Styles */
+.lottery-section {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin: 40px 0;
+
+    text-align: center;
+}
+
+.lottery-section h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.lottery-section h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .lottery-content {
     max-width: 800px;
     margin: 0 auto;
@@ -2421,6 +2454,7 @@ dark .event-card,
     cursor: pointer;
     transition: var(--transition);
 }
+
 .lottery-btn:hover {
     background-color: var(--secondary-light);
     transform: translateY(-2px);
@@ -2522,6 +2556,7 @@ dark .event-card,
     background-color: #333;
     color: var(--text-light);
 }
+
 .dark .quantity-input {
     background-color: #333;
     color: var(--text-light);
