@@ -5,10 +5,20 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Say Hello
-      run: echo "Hello from GitHub Actions!"
+    - name: Node.js Setup (if you're using JS)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Tests (Optional)
+      run: echo "Add your tests here"
+
+    - name: Done
+      run: echo "Workflow completed!"
